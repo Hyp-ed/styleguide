@@ -921,85 +921,16 @@
         <a href="https://google.github.io/styleguide/cppguide.html#Scoping" alt="link to Scoping">
           <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
         </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Scoping" alt="link to Scoping">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
       </h2>
 
       <h3 id="Namespaces" style="left: -46px; position: relative;">Namespaces
         <a href="https://google.github.io/styleguide/cppguide.html#Namespaces" alt="link to Namespaces">
           <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
         </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Namespaces"
-          alt="link to Namespaces">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
       </h3>
 
-      <div class="summary">
-        <p>With few exceptions, place code in a namespace. Namespaces should have unique names based on
-          the project name, and possibly its path. Do not use
-          <i>using-directives</i> (e.g.
-          <code>using namespace foo</code>). Do not use inline namespaces. For unnamed namespaces, see
-          <a href="https://google.github.io/styleguide/cppguide.html#Unnamed_Namespaces_and_Static_Variables">Unnamed Namespaces and Static Variables</a>.
-        </p>
-      </div>
-
       <div class="stylebody">
-
-        <div class="definition">
-          <p>Namespaces subdivide the global scope into distinct, named scopes, and so are useful for preventing
-            name collisions in the global scope.</p>
-        </div>
-
-        <div class="pros">
-
-          <p>Namespaces provide a method for preventing name conflicts in large programs while allowing
-            most code to use reasonably short names.</p>
-
-          <p>For example, if two different projects have a class
-            <code>Foo</code> in the global scope, these symbols may collide at compile time or at runtime. If each project
-            places their code in a namespace,
-            <code>project1::Foo</code> and
-            <code>project2::Foo</code> are now distinct symbols that do not collide, and code within each project's namespace can
-            continue to refer to
-            <code>Foo</code> without the prefix.</p>
-
-          <p>Inline namespaces automatically place their names in the enclosing scope. Consider the following
-            snippet, for example:
-          </p>
-
-          <pre>namespace X {
-inline namespace Y {
-  void foo();
-}  // namespace Y
-}  // namespace X
-</pre>
-
-          <p>The expressions
-            <code>X::Y::foo()</code> and
-            <code>X::foo()</code> are interchangeable. Inline namespaces are primarily intended for ABI compatibility across
-            versions.</p>
-        </div>
-
-        <div class="cons">
-
-          <p>Namespaces can be confusing, because they complicate the mechanics of figuring out what definition
-            a name refers to.
-          </p>
-
-          <p>Inline namespaces, in particular, can be confusing because names aren't actually restricted
-            to the namespace where they are declared. They are only useful as part of some larger versioning
-            policy.</p>
-
-          <p>In some contexts, it's necessary to repeatedly refer to symbols by their fully-qualified names.
-            For deeply-nested namespaces, this can add a lot of clutter.</p>
-        </div>
-
         <div class="decision">
-
           <p>Namespaces should be used as follows:</p>
 
           <ul>
@@ -1015,7 +946,8 @@ inline namespace Y {
                   gflags</a> definitions/declarations and forward declarations of classes from other
                 namespaces.</p>
 
-              <pre>// In the .h file
+              <pre>
+// In the .h file
 namespace mynamespace {
 
 // All declarations are within the namespace scope.
@@ -1057,13 +989,6 @@ using ::foo::bar;
 </pre>
             </li>
 
-
-
-            <li>Do not declare anything in namespace
-              <code>std</code>, including forward declarations of standard library classes. Declaring entities in namespace
-              <code>std</code> is undefined behavior, i.e., not portable. To declare entities from the standard library,
-              include the appropriate header file.</li>
-
             <li>
               <p>You may not use a
                 <i>using-directive</i>
@@ -1104,123 +1029,9 @@ inline void my_inline_function() {
         </div>
       </div>
 
-      <h3 id="Unnamed_Namespaces_and_Static_Variables" style="left: -46px; position: relative;">Unnamed Namespaces and Static Variables
-        <a href="https://google.github.io/styleguide/cppguide.html#Unnamed_Namespaces_and_Static_Variables" alt="link to Unnamed_Namespaces_and_Static_Variables">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Unnamed_Namespaces_and_Static_Variables"
-          alt="link to Unnamed_Namespaces_and_Static_Variables">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
-
-      <div class="summary">
-        <p>When definitions in a
-          <code>.cc</code> file do not need to be referenced outside that file, place them in an unnamed namespace or
-          declare them
-          <code>static</code>. Do not use either of these constructs in
-          <code>.h</code> files.
-        </p>
-      </div>
-
-      <div class="stylebody">
-
-        <div class="definition">
-          <p>All declarations can be given internal linkage by placing them in unnamed namespaces, and functions
-            and variables can be given internal linkage by declaring them
-            <code>static</code>. This means that anything you're declaring can't be accessed from another file. If a different
-            file declares something with the same name, then the two entities are completely independent.</p>
-        </div>
-
-        <div class="decision">
-
-          <p>Use of internal linkage in
-            <code>.cc</code> files is encouraged for all code that does not need to be referenced elsewhere. Do not use
-            internal linkage in
-            <code>.h</code> files.</p>
-
-          <p>Format unnamed namespaces like named namespaces. In the terminating comment, leave the namespace
-            name empty:</p>
-
-          <pre>namespace {
-...
-}  // namespace
-</pre>
-        </div>
-      </div>
-
-      <h3 id="Nonmember,_Static_Member,_and_Global_Functions" style="left: -46px; position: relative;">Nonmember, Static Member, and Global Functions
-        <a href="https://google.github.io/styleguide/cppguide.html#Nonmember,_Static_Member,_and_Global_Functions"
-          alt="link to Nonmember,_Static_Member,_and_Global_Functions">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Nonmember,_Static_Member,_and_Global_Functions"
-          alt="link to Nonmember,_Static_Member,_and_Global_Functions">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
-
-      <div class="summary">
-        <p>Prefer placing nonmember functions in a namespace; use completely global functions rarely. Prefer
-          grouping functions with a namespace instead of using a class as if it were a namespace. Static
-          methods of a class should generally be closely related to instances of the class or the class's
-          static data.
-        </p>
-      </div>
-
-      <div class="stylebody">
-
-        <div class="pros">
-          <p>Nonmember and static member functions can be useful in some situations. Putting nonmember functions
-            in a namespace avoids polluting the global namespace.</p>
-        </div>
-
-        <div class="cons">
-          <p>Nonmember and static member functions may make more sense as members of a new class, especially
-            if they access external resources or have significant dependencies.</p>
-        </div>
-
-        <div class="decision">
-          <p>Sometimes it is useful to define a function not bound to a class instance. Such a function
-            can be either a static member or a nonmember function. Nonmember functions should not depend
-            on external variables, and should nearly always exist in a namespace. Rather than creating
-            classes only to group static member functions which do not share static data, use
-            <a href="https://google.github.io/styleguide/cppguide.html#Namespaces">namespaces</a> instead. For a header
-            <code>myproject/foo_bar.h</code>, for example, write</p>
-          <pre>namespace myproject {
-namespace foo_bar {
-void Function1();
-void Function2();
-}  // namespace foo_bar
-}  // namespace myproject
-</pre>
-          <p>instead of</p>
-          <pre class="badcode">namespace myproject {
-class FooBar {
- public:
-  static void Function1();
-  static void Function2();
-};
-}  // namespace myproject
-</pre>
-
-          <p>If you define a nonmember function and it is only needed in its
-            <code>.cc</code> file, use
-            <a href="https://google.github.io/styleguide/cppguide.html#Unnamed_Namespaces_and_Static_Variables">internal linkage</a> to limit its scope.</p>
-        </div>
-
-      </div>
-
       <h3 id="Local_Variables" style="left: -46px; position: relative;">Local Variables
         <a href="https://google.github.io/styleguide/cppguide.html#Local_Variables" alt="link to Local_Variables">
           <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Local_Variables"
-          alt="link to Local_Variables">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
         </a>
       </h3>
 
@@ -1280,80 +1091,6 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
       </div>
 
-      <h3 id="Static_and_Global_Variables" style="left: -46px; position: relative;">Static and Global Variables
-        <a href="https://google.github.io/styleguide/cppguide.html#Static_and_Global_Variables"
-          alt="link to Static_and_Global_Variables">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Static_and_Global_Variables"
-          alt="link to Static_and_Global_Variables">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
-
-      <div class="summary">
-        <p>Variables of class type with
-          <a href="http://en.cppreference.com/w/cpp/language/storage_duration#Storage_duration">
-            static storage duration</a> are forbidden: they cause hard-to-find bugs due to indeterminate
-          order of construction and destruction. However, such variables are allowed if they are
-          <code>constexpr</code>: they have no dynamic initialization or destruction.</p>
-      </div>
-
-      <div class="stylebody">
-
-        <p>Objects with static storage duration, including global variables, static variables, static class
-          member variables, and function static variables, must be Plain Old Data (POD): only ints, chars,
-          floats, or pointers, or arrays/structs of POD.</p>
-
-        <p>The order in which class constructors and initializers for static variables are called is only
-          partially specified in C++ and can even change from build to build, which can cause bugs that
-          are difficult to find. Therefore in addition to banning globals of class type, we do not allow
-          non-local static variables to be initialized with the result of a function, unless that function
-          (such as getenv(), or getpid()) does not itself depend on any other globals. However, a static
-          POD variable within function scope may be initialized with the result of a function, since
-          its initialization order is well-defined and does not occur until control passes through its
-          declaration.
-        </p>
-
-        <p>Likewise, global and static variables are destroyed when the program terminates, regardless of
-          whether the termination is by returning from
-          <code>main()</code> or by calling
-          <code>exit()</code>. The order in which destructors are called is defined to be the reverse of the order in which
-          the constructors were called. Since constructor order is indeterminate, so is destructor order.
-          For example, at program-end time a static variable might have been destroyed, but code still
-          running — perhaps in another thread — tries to access it and fails. Or the destructor for a
-          static
-          <code>string</code> variable might be run prior to the destructor for another variable that contains a reference
-          to that string.</p>
-
-        <p>One way to alleviate the destructor problem is to terminate the program by calling
-          <code>quick_exit()</code> instead of
-          <code>exit()</code>. The difference is that
-          <code>quick_exit()</code> does not invoke destructors and does not invoke any handlers that were registered by calling
-          <code>atexit()</code>. If you have a handler that needs to run when a program terminates via
-          <code>quick_exit()</code> (flushing logs, for example), you can register it using
-          <code>at_quick_exit()</code>. (If you have a handler that needs to run at both
-          <code>exit()</code> and
-          <code>quick_exit()</code>, you need to register it in both places.)</p>
-
-        <p>As a result we only allow static variables to contain POD data. This rule completely disallows
-          <code>std::vector</code> (use C arrays instead), or
-          <code>string</code> (use
-          <code>const char []</code>).</p>
-
-
-
-        <p>If you need a static or global variable of a class type, consider initializing a pointer (which
-          will never be freed), from either your main() function or from pthread_once(). Note that this
-          must be a raw pointer, not a "smart" pointer, since the smart pointer's destructor will have
-          the order-of-destructor issue that we are trying to avoid.</p>
-
-
-
-
-
-      </div>
 
       <h2 id="Classes" style="left: -46px; position: relative;">Classes
         <a href="https://google.github.io/styleguide/cppguide.html#Classes" alt="link to Classes">
