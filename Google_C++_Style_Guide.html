@@ -1197,22 +1197,12 @@ for (int i = 0; i &lt; 1000000; ++i) {
         <a href="https://google.github.io/styleguide/cppguide.html#Functions" alt="link to Functions">
           <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
         </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Functions"
-          alt="link to Functions">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
       </h2>
 
       <h3 id="Function_Parameter_Ordering" style="left: -46px; position: relative;">Parameter Ordering
         <a href="https://google.github.io/styleguide/cppguide.html#Function_Parameter_Ordering"
           alt="link to Function_Parameter_Ordering">
           <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Function_Parameter_Ordering"
-          alt="link to Function_Parameter_Ordering">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
         </a>
       </h3>
 
@@ -1240,11 +1230,6 @@ for (int i = 0; i &lt; 1000000; ++i) {
           alt="link to Write_Short_Functions">
           <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
         </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Write_Short_Functions"
-          alt="link to Write_Short_Functions">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
       </h3>
 
       <div class="summary">
@@ -1252,7 +1237,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
       </div>
 
       <div class="stylebody">
-        <p>We recognize that long functions are sometimes appropriate, so no hard limit is placed on functions
+        <p>Long functions are sometimes appropriate, so no hard limit is placed on functions
           length. If a function exceeds about 40 lines, think about whether it can be broken up without
           harming the structure of the program.</p>
 
@@ -1267,202 +1252,6 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
       </div>
 
-      <h3 id="Reference_Arguments" style="left: -46px; position: relative;">Reference Arguments
-        <a href="https://google.github.io/styleguide/cppguide.html#Reference_Arguments"
-          alt="link to Reference_Arguments">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Reference_Arguments"
-          alt="link to Reference_Arguments">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
-
-      <div class="summary">
-        <p>All parameters passed by reference must be labeled
-          <code>const</code>.</p>
-      </div>
-
-      <div class="stylebody">
-
-        <div class="definition">
-          <p>In C, if a function needs to modify a variable, the parameter must use a pointer, eg
-            <code>int foo(int *pval)</code>. In C++, the function can alternatively declare a reference parameter:
-            <code>int foo(int &amp;val)</code>.</p>
-        </div>
-
-        <div class="pros">
-          <p>Defining a parameter as reference avoids ugly code like
-            <code>(*pval)++</code>. Necessary for some applications like copy constructors. Makes it clear, unlike with pointers,
-            that a null pointer is not a possible value.
-          </p>
-        </div>
-
-        <div class="cons">
-          <p>References can be confusing, as they have value syntax but pointer semantics.</p>
-        </div>
-
-        <div class="decision">
-          <p>Within function parameter lists all references must be
-            <code>const</code>:</p>
-
-          <pre>void Foo(const string &amp;in, string *out);
-</pre>
-
-          <p>In fact it is a very strong convention in Google code that input arguments are values or
-            <code>const</code> references while output arguments are pointers. Input parameters may be
-            <code>const</code> pointers, but we never allow non-
-            <code>const</code> reference parameters except when required by convention, e.g.,
-            <code>swap()</code>.</p>
-
-          <p>However, there are some instances where using
-            <code>const T*</code> is preferable to
-            <code>const
-T&amp;</code> for input parameters. For example:</p>
-
-          <ul>
-            <li>You want to pass in a null pointer.</li>
-
-            <li>The function saves a pointer or reference to the input.
-            </li>
-          </ul>
-
-          <p> Remember that most of the time input parameters are going to be specified as
-            <code>const
-T&amp;</code>. Using
-            <code>const T*</code> instead communicates to the reader that the input is somehow treated differently. So if
-            you choose
-            <code>const
-T*</code> rather than
-            <code>const T&amp;</code>, do so for a concrete reason; otherwise it will likely confuse readers by making them look
-            for an explanation that doesn't exist.</p>
-        </div>
-
-      </div>
-
-      <h3 id="Function_Overloading" style="left: -46px; position: relative;">Function Overloading
-        <a href="https://google.github.io/styleguide/cppguide.html#Function_Overloading"
-          alt="link to Function_Overloading">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Function_Overloading"
-          alt="link to Function_Overloading">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
-
-      <div class="summary">
-        <p>Use overloaded functions (including constructors) only if a reader looking at a call site can
-          get a good idea of what is happening without having to first figure out exactly which overload
-          is being called.</p>
-      </div>
-
-      <div class="stylebody">
-
-        <div class="definition">
-          <p>You may write a function that takes a
-            <code>const
-string&amp;</code> and overload it with another that takes
-            <code>const char*</code>.</p>
-
-          <pre>class MyClass {
- public:
-  void Analyze(const string &amp;text);
-  void Analyze(const char *text, size_t textlen);
-};
-</pre>
-        </div>
-
-        <div class="pros">
-          <p>Overloading can make code more intuitive by allowing an identically-named function to take
-            different arguments. It may be necessary for templatized code, and it can be convenient for
-            Visitors.</p>
-        </div>
-
-        <div class="cons">
-          <p>If a function is overloaded by the argument types alone, a reader may have to understand C++'s
-            complex matching rules in order to tell what's going on. Also many people are confused by
-            the semantics of inheritance if a derived class overrides only some of the variants of a
-            function.
-          </p>
-        </div>
-
-        <div class="decision">
-          <p>If you want to overload a function, consider qualifying the name with some information about
-            the arguments, e.g.,
-            <code>AppendString()</code>,
-            <code>AppendInt()</code> rather than just
-            <code>Append()</code>. If you are overloading a function to support variable number of arguments of the same type,
-            consider making it take a
-            <code>std::vector</code> so that the user can use an
-            <a href="https://google.github.io/styleguide/cppguide.html#Braced_Initializer_List">initializer list
-            </a> to specify the arguments.</p>
-        </div>
-
-      </div>
-
-      <h3 id="Default_Arguments" style="left: -46px; position: relative;">Default Arguments
-        <a href="https://google.github.io/styleguide/cppguide.html#Default_Arguments"
-          alt="link to Default_Arguments">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Default_Arguments"
-          alt="link to Default_Arguments">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
-
-      <div class="summary">
-        <p>Default arguments are allowed on non-virtual functions when the default is guaranteed to always
-          have the same value. Follow the same restrictions as for
-          <a href="https://google.github.io/styleguide/cppguide.html#Function_Overloading">function overloading</a>, and prefer overloaded functions if the readability gained with default
-          arguments doesn't outweigh the downsides below.</p>
-      </div>
-
-      <div class="stylebody">
-
-        <div class="pros">
-          <p>Often you have a function that uses default values, but occasionally you want to override the
-            defaults. Default parameters allow an easy way to do this without having to define many functions
-            for the rare exceptions. Compared to overloading the function, default arguments have a cleaner
-            syntax, with less boilerplate and a clearer distinction between 'required' and 'optional'
-            arguments.
-          </p>
-        </div>
-
-        <div class="cons">
-          <p>Defaulted arguments are another way to achieve the semantics of overloaded functions, so all
-            the
-            <a href="https://google.github.io/styleguide/cppguide.html#Function_Overloading">reasons not to overload functions
-            </a> apply.</p>
-
-          <p>The defaults for arguments in a virtual function call are determined by the static type of
-            the target object, and there's no guarantee that all overrides of a given function declare
-            the same defaults.</p>
-
-          <p>Default parameters are re-evaluated at each call site, which can bloat the generated code.
-            Readers may also expect the default's value to be fixed at the declaration instead of varying
-            at each call.</p>
-
-          <p>Function pointers are confusing in the presence of default arguments, since the function signature
-            often doesn't match the call signature. Adding function overloads avoids these problems.</p>
-        </div>
-
-        <div class="decision">
-          <p>Default arguments are banned on virtual functions, where they don't work properly, and in cases
-            where the specified default might not evaluate to the same value depending on when it was
-            evaluated. (For example, don't write
-            <code>void
-f(int n = counter++);</code>.)</p>
-
-          <p>In some other cases, default arguments can improve the readability of their function declarations
-            enough to overcome the downsides above, so they are allowed. When in doubt, use overloads.</p>
-        </div>
-
-      </div>
 
       <h3 id="trailing_return" style="left: -46px; position: relative;">Trailing Return Type Syntax
         <a href="https://google.github.io/styleguide/cppguide.html#trailing_return"
