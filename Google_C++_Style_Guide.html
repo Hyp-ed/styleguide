@@ -440,15 +440,7 @@
       <p>Note that this guide is not a C++ tutorial: we assume that the reader is familiar with the language.
         </p>
 
-      <h3 id="Goals" style="left: -46px; position: relative;">Goals of the Style Guide
-        <a href="https://google.github.io/styleguide/cppguide.html#Goals" alt="link to Goals">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Goals" alt="link to Goals">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Goals" style="left: -46px; position: relative;">Goals of the Style Guide</h3>
       <div class="stylebody">
         <p>Why do we have this document?</p>
 
@@ -542,16 +534,7 @@
 
 
 
-      <h2 id="Header_Files" style="left: -46px; position: relative;">Header Files
-        <a href="https://google.github.io/styleguide/cppguide.html#Header_Files" alt="link to Header_Files">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Header_Files"
-          alt="link to Header_Files">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h2>
+      <h2 id="Header_Files" style="left: -46px; position: relative;">Header Files</h2>
 
       <p>In general, every
         <code>.cc</code> file should have an associated
@@ -565,17 +548,7 @@
       <p>The following rules will guide you through the various pitfalls of using header files.</p>
 
       <a id="The_-inl.h_Files"></a>
-      <h3 id="Self_contained_Headers" style="left: -46px; position: relative;">Self-contained Headers
-        <a href="https://google.github.io/styleguide/cppguide.html#Self_contained_Headers"
-          alt="link to Self_contained_Headers">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Self_contained_Headers"
-          alt="link to Self_contained_Headers">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Self_contained_Headers" style="left: -46px; position: relative;">Self-contained Headers</h3>
 
       <div class="summary">
         <p>Header files should be self-contained (compile on their own) and end in
@@ -609,17 +582,7 @@
 
       </div>
 
-      <h3 id="The__define_Guard" style="left: -46px; position: relative;">The #define Guard
-        <a href="https://google.github.io/styleguide/cppguide.html#The__define_Guard"
-          alt="link to The__define_Guard">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#The__define_Guard"
-          alt="link to The__define_Guard">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="The__define_Guard" style="left: -46px; position: relative;">The #define Guard</h3>
 
       <div class="summary">
         <p>All header files should have
@@ -628,8 +591,6 @@
       </div>
 
       <div class="stylebody">
-
-
 
         <p>To guarantee uniqueness, they should be based on the full path in a project's source tree. For
           example, the file
@@ -645,22 +606,9 @@
 #endif  // FOO_BAR_BAZ_H_
 </pre>
 
-
-
-
       </div>
 
-      <h3 id="Forward_Declarations" style="left: -46px; position: relative;">Forward Declarations
-        <a href="https://google.github.io/styleguide/cppguide.html#Forward_Declarations"
-          alt="link to Forward_Declarations">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Forward_Declarations"
-          alt="link to Forward_Declarations">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Forward_Declarations" style="left: -46px; position: relative;">Forward Declarations</h3>
 
       <div class="summary">
         <p>Avoid using forward declarations where possible. Just
@@ -745,16 +693,7 @@
 
       </div>
 
-      <h3 id="Inline_Functions" style="left: -46px; position: relative;">Inline Functions
-        <a href="https://google.github.io/styleguide/cppguide.html#Inline_Functions" alt="link to Inline_Functions">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Inline_Functions"
-          alt="link to Inline_Functions">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Inline_Functions" style="left: -46px; position: relative;">Inline Functions</h3>
 
       <div class="summary">
         <p>Define functions inline only when they are small, say, 10 lines or fewer.</p>
@@ -799,17 +738,7 @@
 
       </div>
 
-      <h3 id="Names_and_Order_of_Includes" style="left: -46px; position: relative;">Names and Order of Includes
-        <a href="https://google.github.io/styleguide/cppguide.html#Names_and_Order_of_Includes"
-          alt="link to Names_and_Order_of_Includes">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Names_and_Order_of_Includes"
-          alt="link to Names_and_Order_of_Includes">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Names_and_Order_of_Includes" style="left: -46px; position: relative;">Names and Order of Includes</h3>
 
       <div class="summary">
         <p>Use standard order for readability and to avoid hidden dependencies: Related header, C library,
@@ -917,18 +846,9 @@
 
       </div>
 
-      <h2 id="Scoping" style="left: -46px; position: relative;">Scoping
-        <a href="https://google.github.io/styleguide/cppguide.html#Scoping" alt="link to Scoping">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h2>
-
-      <h3 id="Namespaces" style="left: -46px; position: relative;">Namespaces
-        <a href="https://google.github.io/styleguide/cppguide.html#Namespaces" alt="link to Namespaces">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
-
+      <h2 id="Scoping" style="left: -46px; position: relative;">Scoping</h2>
+      <h3 id="Namespaces" style="left: -46px; position: relative;">Namespaces</h3>
+      
       <div class="stylebody">
         <div class="decision">
           <p>Namespaces should be used as follows:</p>
@@ -1030,9 +950,6 @@ inline void my_inline_function() {
       </div>
 
       <h3 id="Local_Variables" style="left: -46px; position: relative;">Local Variables
-        <a href="https://google.github.io/styleguide/cppguide.html#Local_Variables" alt="link to Local_Variables">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
       </h3>
 
       <div class="summary">
@@ -1092,20 +1009,12 @@ for (int i = 0; i &lt; 1000000; ++i) {
       </div>
 
 
-      <h2 id="Classes" style="left: -46px; position: relative;">Classes
-        <a href="https://google.github.io/styleguide/cppguide.html#Classes" alt="link to Classes">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h2>
+      <h2 id="Classes" style="left: -46px; position: relative;">Classes</h2>
 
       <p>Classes are the fundamental unit of code in C++. Naturally, we use them extensively. This section
         lists the main dos and don'ts you should follow when writing a class.</p>
 
-      <h3 id="Inheritance" style="left: -46px; position: relative;">Inheritance
-        <a href="https://google.github.io/styleguide/cppguide.html#Inheritance" alt="link to Inheritance">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Inheritance" style="left: -46px; position: relative;">Inheritance</h3>
 
       <div class="stylebody">
 
@@ -1123,11 +1032,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
       </div>
 
-      <h3 id="Access_Control" style="left: -46px; position: relative;">Access Control
-        <a href="https://google.github.io/styleguide/cppguide.html#Access_Control" alt="link to Access_Control">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Access_Control" style="left: -46px; position: relative;">Access Control</h3>
 
       <div class="summary">
         <p> Make data members
@@ -1141,12 +1046,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
           </a>).</p>
       </div>
 
-      <h3 id="Declaration_Order" style="left: -46px; position: relative;">Declaration Order
-        <a href="https://google.github.io/styleguide/cppguide.html#Declaration_Order"
-          alt="link to Declaration_Order">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Declaration_Order" style="left: -46px; position: relative;">Declaration Order</h3>
 
       <div class="summary">
         <p>Group similar declarations together, placing public parts earlier.
@@ -1173,18 +1073,9 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
       </div>
 
-      <h2 id="Functions" style="left: -46px; position: relative;">Functions
-        <a href="https://google.github.io/styleguide/cppguide.html#Functions" alt="link to Functions">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h2>
+      <h2 id="Functions" style="left: -46px; position: relative;">Functions</h2>
 
-      <h3 id="Function_Parameter_Ordering" style="left: -46px; position: relative;">Parameter Ordering
-        <a href="https://google.github.io/styleguide/cppguide.html#Function_Parameter_Ordering"
-          alt="link to Function_Parameter_Ordering">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Function_Parameter_Ordering" style="left: -46px; position: relative;">Parameter Ordering</h3>
 
       <div class="summary">
         <p>When defining a function, parameter order is: inputs, then outputs.
@@ -1205,12 +1096,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
       </div>
 
-      <h3 id="Write_Short_Functions" style="left: -46px; position: relative;">Write Short Functions
-        <a href="https://google.github.io/styleguide/cppguide.html#Write_Short_Functions"
-          alt="link to Write_Short_Functions">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Write_Short_Functions" style="left: -46px; position: relative;">Write Short Functions</h3>
 
       <div class="summary">
         <p>Prefer small and focused functions.</p>
@@ -1233,17 +1119,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
       </div>
 
 
-      <h3 id="trailing_return" style="left: -46px; position: relative;">Trailing Return Type Syntax
-        <a href="https://google.github.io/styleguide/cppguide.html#trailing_return"
-          alt="link to trailing_return">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#trailing_return"
-          alt="link to trailing_return">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="trailing_return" style="left: -46px; position: relative;">Trailing Return Type Syntax</h3>
       <div class="summary">
         <p>Use trailing return types only where using the ordinary syntax (leading return types) is impractical
           or much less readable.</p>
@@ -1299,22 +1175,9 @@ for (int i = 0; i &lt; 1000000; ++i) {
       </div>
 
 
-      <h2 id="Other_C++_Features" style="left: -46px; position: relative;">Other C++ Features
-        <a href="https://google.github.io/styleguide/cppguide.html#Other_C++_Features"
-          alt="link to Other_C++_Features">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h2>
+      <h2 id="Other_C++_Features" style="left: -46px; position: relative;">Other C++ Features</h2>
 
-      <h3 id="Friends" style="left: -46px; position: relative;">Friends
-        <a href="https://google.github.io/styleguide/cppguide.html#Friends" alt="link to Friends">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Friends" alt="link to Friends">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Friends" style="left: -46px; position: relative;">Friends</h3>
 
       <div class="summary">
         <p>We allow use of
@@ -1339,15 +1202,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
       </div>
 
       
-      <h3 id="Casting" style="left: -46px; position: relative;">Casting
-        <a href="https://google.github.io/styleguide/cppguide.html#Casting" alt="link to Casting">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Casting" alt="link to Casting">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Casting" style="left: -46px; position: relative;">Casting</h3>
 
       <div class="summary">
         <p>Use C++-style casts like
@@ -1418,17 +1273,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
       </div>
 
-      <h3 id="Preincrement_and_Predecrement" style="left: -46px; position: relative;">Preincrement and Predecrement
-        <a href="https://google.github.io/styleguide/cppguide.html#Preincrement_and_Predecrement"
-          alt="link to Preincrement_and_Predecrement">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Preincrement_and_Predecrement"
-          alt="link to Preincrement_and_Predecrement">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Preincrement_and_Predecrement" style="left: -46px; position: relative;">Preincrement and Predecrement</h3>
 
       <div class="summary">
         <p>Use prefix form (
@@ -1474,11 +1319,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
       </div>
 
-      <h3 id="Integer_Types" style="left: -46px; position: relative;">Integer Types
-        <a href="https://google.github.io/styleguide/cppguide.html#Integer_Types" alt="link to Integer_Types">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Integer_Types" style="left: -46px; position: relative;">Integer Types</h3>
 
       <div class="summary">
         <p>Of the built-in C++ integer types, the only one used is
@@ -1573,11 +1414,7 @@ long long</code> and the like, when you need a guarantee on the size of an integ
 
       </div>
 
-      <h2 id="Naming" style="left: -46px; position: relative;">Naming
-        <a href="https://google.github.io/styleguide/cppguide.html#Naming" alt="link to Naming">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h2>
+      <h2 id="Naming" style="left: -46px; position: relative;">Naming</h2>
 
       <p>The most important consistency rules are those that govern naming. The style of a name immediately
         informs us what sort of thing the named entity is: a type, a variable, a function, a constant,
@@ -1589,12 +1426,7 @@ long long</code> and the like, when you need a guarantee on the size of an integ
         preferences in this area, so regardless of whether you find them sensible or not, the rules are
         the rules.</p>
 
-      <h3 id="General_Naming_Rules" style="left: -46px; position: relative;">General Naming Rules
-        <a href="https://google.github.io/styleguide/cppguide.html#General_Naming_Rules"
-          alt="link to General_Naming_Rules">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="General_Naming_Rules" style="left: -46px; position: relative;">General Naming Rules</h3>
 
       <div class="summary">
         <p>Names should be descriptive; avoid abbreviation.</p>
@@ -1632,11 +1464,7 @@ int cstmr_id;              // Deletes internal letters.
         </p>
       </div>
 
-      <h3 id="File_Names" style="left: -46px; position: relative;">File Names
-        <a href="https://google.github.io/styleguide/cppguide.html#File_Names" alt="link to File_Names">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="File_Names" style="left: -46px; position: relative;">File Names</h3>
 
       <div class="summary">
         <p>Filenames should be all lowercase and can include underscores (
@@ -1687,11 +1515,7 @@ int cstmr_id;              // Deletes internal letters.
 
       </div>
 
-      <h3 id="Type_Names" style="left: -46px; position: relative;">Type Names
-        <a href="https://google.github.io/styleguide/cppguide.html#Type_Names" alt="link to Type_Names">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Type_Names" style="left: -46px; position: relative;">Type Names</h3>
 
       <div class="summary">
         <p>Type names start with a capital letter and have a capital letter for each new word, with no underscores:
@@ -1722,11 +1546,7 @@ enum UrlTableErrors { ...
 
       </div>
 
-      <h3 id="Variable_Names" style="left: -46px; position: relative;">Variable Names
-        <a href="https://google.github.io/styleguide/cppguide.html#Variable_Names" alt="link to Variable_Names">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Variable_Names" style="left: -46px; position: relative;">Variable Names</h3>
 
       <div class="summary">
         <p>The names of variables (including function parameters) and data members are all lowercase, with
@@ -1783,11 +1603,7 @@ string tablename;   // OK - all lowercase.
 
       </div>
 
-      <h3 id="Constant_Names" style="left: -46px; position: relative;">Constant Names
-        <a href="https://google.github.io/styleguide/cppguide.html#Constant_Names" alt="link to Constant_Names">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Constant_Names" style="left: -46px; position: relative;">Constant Names</h3>
 
       <div class="summary">
         <p>Variables declared constexpr or const, and whose value is fixed for the duration of the program,
@@ -1809,11 +1625,7 @@ string tablename;   // OK - all lowercase.
         </p>
       </div>
 
-      <h3 id="Function_Names" style="left: -46px; position: relative;">Function Names
-        <a href="https://google.github.io/styleguide/cppguide.html#Function_Names" alt="link to Function_Names">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Function_Names" style="left: -46px; position: relative;">Function Names</h3>
 
       <div class="summary">
         <p>Regular functions have mixed case; accessors and mutators may be named like variables.</p>
@@ -1846,11 +1658,7 @@ set_count(int count)</code>.</p>
 
       </div>
 
-      <h3 id="Namespace_Names" style="left: -46px; position: relative;">Namespace Names
-        <a href="https://google.github.io/styleguide/cppguide.html#Namespace_Names" alt="link to Namespace_Names">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Namespace_Names" style="left: -46px; position: relative;">Namespace Names</h3>
 
       <div class="summary">
         Namespace names are all lower-case. Top-level namespace names are based on the project name . Avoid collisions
@@ -1889,11 +1697,7 @@ set_count(int count)</code>.</p>
 
       </div>
 
-      <h3 id="Enumerator_Names" style="left: -46px; position: relative;">Enumerator Names
-        <a href="https://google.github.io/styleguide/cppguide.html#Enumerator_Names" alt="link to Enumerator_Names">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Enumerator_Names" style="left: -46px; position: relative;">Enumerator Names</h3>
 
       <div class="summary">
         <p>Enumerators (for both scoped and unscoped enums) should be named
@@ -1934,11 +1738,7 @@ enum AlternateUrlTableErrors {
 
       </div>
 
-      <h3 id="Macro_Names" style="left: -46px; position: relative;">Macro Names
-        <a href="https://google.github.io/styleguide/cppguide.html#Macro_Names" alt="link to Macro_Names">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Macro_Names" style="left: -46px; position: relative;">Macro Names</h3>
 
       <div class="summary">
         <p>You're not really going to
@@ -1960,12 +1760,7 @@ enum AlternateUrlTableErrors {
 
       </div>
 
-      <h3 id="Exceptions_to_Naming_Rules" style="left: -46px; position: relative;">Exceptions to Naming Rules
-        <a href="https://google.github.io/styleguide/cppguide.html#Exceptions_to_Naming_Rules"
-          alt="link to Exceptions_to_Naming_Rules">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Exceptions_to_Naming_Rules" style="left: -46px; position: relative;">Exceptions to Naming Rules</h3>
 
       <div class="summary">
         <p>If you are naming something that is analogous to an existing C or C++ entity then you can follow
@@ -2013,11 +1808,7 @@ enum AlternateUrlTableErrors {
 
       </div>
 
-      <h2 id="Comments" style="left: -46px; position: relative;">Comments
-        <a href="https://google.github.io/styleguide/cppguide.html#Comments" alt="link to Comments">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h2>
+      <h2 id="Comments" style="left: -46px; position: relative;">Comments</h2>
 
       <p>Though a pain to write, comments are absolutely vital to keeping our code readable. The following
         rules describe what you should comment and where. But remember: while comments are very important,
@@ -2027,11 +1818,7 @@ enum AlternateUrlTableErrors {
       <p>When writing your comments, write for your audience: the next contributor who will need to understand
         your code. Be generous — the next one may be you!</p>
 
-      <h3 id="Comment_Style" style="left: -46px; position: relative;">Comment Style
-        <a href="https://google.github.io/styleguide/cppguide.html#Comment_Style" alt="link to Comment_Style">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Comment_Style" style="left: -46px; position: relative;">Comment Style</h3>
 
       <div class="summary">
         <p>Use either the
@@ -2050,11 +1837,7 @@ enum AlternateUrlTableErrors {
 
       </div>
 
-      <h3 id="File_Comments" style="left: -46px; position: relative;">File Comments
-        <a href="https://google.github.io/styleguide/cppguide.html#File_Comments" alt="link to File_Comments">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="File_Comments" style="left: -46px; position: relative;">File Comments</h3>
 
       <div class="summary">
         <p>Start each file with license boilerplate.</p>
@@ -2091,11 +1874,7 @@ enum AlternateUrlTableErrors {
 
       </div>
 
-      <h3 id="Class_Comments" style="left: -46px; position: relative;">Class Comments
-        <a href="https://google.github.io/styleguide/cppguide.html#Class_Comments" alt="link to Class_Comments">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Class_Comments" style="left: -46px; position: relative;">Class Comments</h3>
 
       <div class="summary">
         <p>Every non-obvious class declaration should have an accompanying comment that describes what it
@@ -2133,12 +1912,7 @@ class GargantuanTableIterator {
 
       </div>
 
-      <h3 id="Function_Comments" style="left: -46px; position: relative;">Function Comments
-        <a href="https://google.github.io/styleguide/cppguide.html#Function_Comments"
-          alt="link to Function_Comments">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Function_Comments" style="left: -46px; position: relative;">Function Comments</h3>
 
       <div class="summary">
         <p>Declaration comments describe use of the function (when it is non-obvious); comments at the definition
@@ -2231,12 +2005,7 @@ bool IsTableFull();
 
       </div>
 
-      <h3 id="Variable_Comments" style="left: -46px; position: relative;">Variable Comments
-        <a href="https://google.github.io/styleguide/cppguide.html#Variable_Comments"
-          alt="link to Variable_Comments">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Variable_Comments" style="left: -46px; position: relative;">Variable Comments</h3>
 
       <div class="summary">
         <p>In general the actual name of the variable should be descriptive enough to give a good idea of
@@ -2274,12 +2043,7 @@ const int kNumTestCases = 6;
 
       </div>
 
-      <h3 id="Implementation_Comments" style="left: -46px; position: relative;">Implementation Comments
-        <a href="https://google.github.io/styleguide/cppguide.html#Implementation_Comments"
-          alt="link to Implementation_Comments">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Implementation_Comments" style="left: -46px; position: relative;">Implementation Comments</h3>
 
       <div class="summary">
         <p>In your implementation you should have comments in tricky, non-obvious, interesting, or important
@@ -2404,12 +2168,7 @@ if (iter != v.end()) {
 
       </div>
 
-      <h3 id="Punctuation,_Spelling_and_Grammar" style="left: -46px; position: relative;">Punctuation, Spelling and Grammar
-        <a href="https://google.github.io/styleguide/cppguide.html#Punctuation,_Spelling_and_Grammar"
-          alt="link to Punctuation,_Spelling_and_Grammar">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Punctuation,_Spelling_and_Grammar" style="left: -46px; position: relative;">Punctuation, Spelling and Grammar</h3>
 
       <div class="summary">
         <p>Pay attention to punctuation, spelling, and grammar; it is easier to read well-written comments
@@ -2431,11 +2190,7 @@ if (iter != v.end()) {
 
       </div>
 
-      <h3 id="TODO_Comments" style="left: -46px; position: relative;">TODO Comments
-        <a href="https://google.github.io/styleguide/cppguide.html#TODO_Comments" alt="link to TODO_Comments">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="TODO_Comments" style="left: -46px; position: relative;">TODO Comments</h3>
 
       <div class="summary">
         <p>Use
@@ -2470,12 +2225,7 @@ if (iter != v.end()) {
 
       </div>
 
-      <h3 id="Deprecation_Comments" style="left: -46px; position: relative;">Deprecation Comments
-        <a href="https://google.github.io/styleguide/cppguide.html#Deprecation_Comments"
-          alt="link to Deprecation_Comments">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Deprecation_Comments" style="left: -46px; position: relative;">Deprecation Comments</h3>
 
       <div class="summary">
         <p>Mark deprecated interface points with
@@ -2512,11 +2262,7 @@ if (iter != v.end()) {
 
       </div>
 
-      <h2 id="Formatting" style="left: -46px; position: relative;">Formatting
-        <a href="https://google.github.io/styleguide/cppguide.html#Formatting" alt="link to Formatting">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h2>
+      <h2 id="Formatting" style="left: -46px; position: relative;">Formatting</h2>
 
       <p>Coding style and formatting are pretty arbitrary, but a project is much easier to follow if everyone
         uses the same style. Individuals may not agree with every aspect of the formatting rules, and
@@ -2529,16 +2275,7 @@ if (iter != v.end()) {
         <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el">
           settings file for emacs</a>.</p>
 
-      <h3 id="Line_Length" style="left: -46px; position: relative;">Line Length
-        <a href="https://google.github.io/styleguide/cppguide.html#Line_Length" alt="link to Line_Length">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Line_Length"
-          alt="link to Line_Length">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Line_Length" style="left: -46px; position: relative;">Line Length</h3>
 
       <div class="summary">
         <p>Each line of text in your code should be at most 80 characters long.</p>
@@ -2585,16 +2322,7 @@ if (iter != v.end()) {
 
       </div>
 
-      <h3 id="Spaces_vs._Tabs" style="left: -46px; position: relative;">Spaces vs. Tabs
-        <a href="https://google.github.io/styleguide/cppguide.html#Spaces_vs._Tabs" alt="link to Spaces_vs._Tabs">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Spaces_vs._Tabs"
-          alt="link to Spaces_vs._Tabs">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Spaces_vs._Tabs" style="left: -46px; position: relative;">Spaces vs. Tabs</h3>
 
       <div class="summary">
         <p>Use only spaces, and indent 2 spaces at a time.</p>
@@ -2607,17 +2335,7 @@ if (iter != v.end()) {
 
       </div>
 
-      <h3 id="Function_Declarations_and_Definitions" style="left: -46px; position: relative;">Function Declarations and Definitions
-        <a href="https://google.github.io/styleguide/cppguide.html#Function_Declarations_and_Definitions"
-          alt="link to Function_Declarations_and_Definitions">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Function_Declarations_and_Definitions"
-          alt="link to Function_Declarations_and_Definitions">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Function_Declarations_and_Definitions" style="left: -46px; position: relative;">Function Declarations and Definitions</h3>
 
       <div class="summary">
         <p>Return type on the same line as function name, parameters on the same line if they fit. Wrap
@@ -2727,17 +2445,7 @@ void Circle::Rotate(double) {}
 
       </div>
 
-      <h3 id="Formatting_Lambda_Expressions" style="left: -46px; position: relative;">Lambda Expressions
-        <a href="https://google.github.io/styleguide/cppguide.html#Formatting_Lambda_Expressions"
-          alt="link to Formatting_Lambda_Expressions">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Formatting_Lambda_Expressions"
-          alt="link to Formatting_Lambda_Expressions">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Formatting_Lambda_Expressions" style="left: -46px; position: relative;">Lambda Expressions</h3>
 
       <div class="summary">
         <p>Format parameters and bodies as for any other function, and capture lists like other comma-separated
@@ -2761,16 +2469,7 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i
 
       </div>
 
-      <h3 id="Function_Calls" style="left: -46px; position: relative;">Function Calls
-        <a href="https://google.github.io/styleguide/cppguide.html#Function_Calls" alt="link to Function_Calls">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Function_Calls"
-          alt="link to Function_Calls">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Function_Calls" style="left: -46px; position: relative;">Function Calls</h3>
 
       <div class="summary">
         <p>Either write the call all on a single line, wrap the arguments at the parenthesis, or start the
@@ -2837,17 +2536,7 @@ my_widget.Transform(x1, x2, x3,
 
       </div>
 
-      <h3 id="Braced_Initializer_List_Format" style="left: -46px; position: relative;">Braced Initializer List Format
-        <a href="https://google.github.io/styleguide/cppguide.html#Braced_Initializer_List_Format"
-          alt="link to Braced_Initializer_List_Format">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Braced_Initializer_List_Format"
-          alt="link to Braced_Initializer_List_Format">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Braced_Initializer_List_Format" style="left: -46px; position: relative;">Braced Initializer List Format</h3>
 
       <div class="summary">
         <p>Format a
@@ -2890,16 +2579,7 @@ MyType m = {  // Here, you could also break before {.
 
       </div>
 
-      <h3 id="Conditionals" style="left: -46px; position: relative;">Conditionals
-        <a href="https://google.github.io/styleguide/cppguide.html#Conditionals" alt="link to Conditionals">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Conditionals"
-          alt="link to Conditionals">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Conditionals" style="left: -46px; position: relative;">Conditionals</h3>
 
       <div class="summary">
         <p>Prefer no spaces inside parentheses. The
@@ -3007,17 +2687,7 @@ if (condition) {
 
       </div>
 
-      <h3 id="Loops_and_Switch_Statements" style="left: -46px; position: relative;">Loops and Switch Statements
-        <a href="https://google.github.io/styleguide/cppguide.html#Loops_and_Switch_Statements"
-          alt="link to Loops_and_Switch_Statements">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Loops_and_Switch_Statements"
-          alt="link to Loops_and_Switch_Statements">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Loops_and_Switch_Statements" style="left: -46px; position: relative;">Loops and Switch Statements</h3>
 
       <div class="summary">
         <p>Switch statements may use braces for blocks. Annotate non-trivial fall-through between cases.
@@ -3086,17 +2756,7 @@ while (condition) continue;  // Good - continue indicates no logic.
 
       </div>
 
-      <h3 id="Pointer_and_Reference_Expressions" style="left: -46px; position: relative;">Pointer and Reference Expressions
-        <a href="https://google.github.io/styleguide/cppguide.html#Pointer_and_Reference_Expressions"
-          alt="link to Pointer_and_Reference_Expressions">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Pointer_and_Reference_Expressions"
-          alt="link to Pointer_and_Reference_Expressions">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Pointer_and_Reference_Expressions" style="left: -46px; position: relative;">Pointer and Reference Expressions</h3>
 
       <div class="summary">
         <p>No spaces around period or arrow. Pointer operators do not have trailing spaces.</p>
@@ -3148,17 +2808,7 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
 
       </div>
 
-      <h3 id="Boolean_Expressions" style="left: -46px; position: relative;">Boolean Expressions
-        <a href="https://google.github.io/styleguide/cppguide.html#Boolean_Expressions"
-          alt="link to Boolean_Expressions">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Boolean_Expressions"
-          alt="link to Boolean_Expressions">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Boolean_Expressions" style="left: -46px; position: relative;">Boolean Expressions</h3>
 
       <div class="summary">
         <p>When you have a boolean expression that is longer than the
@@ -3188,16 +2838,7 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
 
       </div>
 
-      <h3 id="Return_Values" style="left: -46px; position: relative;">Return Values
-        <a href="https://google.github.io/styleguide/cppguide.html#Return_Values" alt="link to Return_Values">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Return_Values"
-          alt="link to Return_Values">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Return_Values" style="left: -46px; position: relative;">Return Values</h3>
 
       <div class="summary">
         <p>Do not needlessly surround the
@@ -3224,17 +2865,7 @@ return(result);                // return is not a function!
 
 
 
-      <h3 id="Variable_and_Array_Initialization" style="left: -46px; position: relative;">Variable and Array Initialization
-        <a href="https://google.github.io/styleguide/cppguide.html#Variable_and_Array_Initialization"
-          alt="link to Variable_and_Array_Initialization">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Variable_and_Array_Initialization"
-          alt="link to Variable_and_Array_Initialization">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Variable_and_Array_Initialization" style="left: -46px; position: relative;">Variable and Array Initialization</h3>
 
       <div class="summary">
         <p>Your choice of
@@ -3280,17 +2911,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
 
       </div>
 
-      <h3 id="Preprocessor_Directives" style="left: -46px; position: relative;">Preprocessor Directives
-        <a href="https://google.github.io/styleguide/cppguide.html#Preprocessor_Directives"
-          alt="link to Preprocessor_Directives">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Preprocessor_Directives"
-          alt="link to Preprocessor_Directives">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Preprocessor_Directives" style="left: -46px; position: relative;">Preprocessor Directives</h3>
 
       <div class="summary">
         <p>The hash mark that starts a preprocessor directive should always be at the beginning of the line.</p>
@@ -3324,16 +2945,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
 
       </div>
 
-      <h3 id="Class_Format" style="left: -46px; position: relative;">Class Format
-        <a href="https://google.github.io/styleguide/cppguide.html#Class_Format" alt="link to Class_Format">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Class_Format"
-          alt="link to Class_Format">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Class_Format" style="left: -46px; position: relative;">Class Format</h3>
 
       <div class="summary">
         <p>Sections in
@@ -3398,17 +3010,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
 
       </div>
 
-      <h3 id="Constructor_Initializer_Lists" style="left: -46px; position: relative;">Constructor Initializer Lists
-        <a href="https://google.github.io/styleguide/cppguide.html#Constructor_Initializer_Lists"
-          alt="link to Constructor_Initializer_Lists">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Constructor_Initializer_Lists"
-          alt="link to Constructor_Initializer_Lists">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Constructor_Initializer_Lists" style="left: -46px; position: relative;">Constructor Initializer Lists</h3>
 
       <div class="summary">
         <p>Constructor initializer lists can be all on one line or with subsequent lines indented four spaces.</p>
@@ -3446,17 +3048,7 @@ MyClass::MyClass(int var)
 
       </div>
 
-      <h3 id="Namespace_Formatting" style="left: -46px; position: relative;">Namespace Formatting
-        <a href="https://google.github.io/styleguide/cppguide.html#Namespace_Formatting"
-          alt="link to Namespace_Formatting">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Namespace_Formatting"
-          alt="link to Namespace_Formatting">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Namespace_Formatting" style="left: -46px; position: relative;">Namespace Formatting</h3>
 
       <div class="summary">
         <p>The contents of namespaces are not indented.</p>
@@ -3496,17 +3088,7 @@ namespace bar {
 
       </div>
 
-      <h3 id="Horizontal_Whitespace" style="left: -46px; position: relative;">Horizontal Whitespace
-        <a href="https://google.github.io/styleguide/cppguide.html#Horizontal_Whitespace"
-          alt="link to Horizontal_Whitespace">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Horizontal_Whitespace"
-          alt="link to Horizontal_Whitespace">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Horizontal_Whitespace" style="left: -46px; position: relative;">Horizontal Whitespace</h3>
 
       <div class="summary">
         <p>Use of horizontal whitespace depends on location. Never put trailing whitespace at the end of
@@ -3600,17 +3182,7 @@ std::vector&lt;char *&gt; x;
 
       </div>
 
-      <h3 id="Vertical_Whitespace" style="left: -46px; position: relative;">Vertical Whitespace
-        <a href="https://google.github.io/styleguide/cppguide.html#Vertical_Whitespace"
-          alt="link to Vertical_Whitespace">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Vertical_Whitespace"
-          alt="link to Vertical_Whitespace">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
+      <h3 id="Vertical_Whitespace" style="left: -46px; position: relative;">Vertical Whitespace</h3>
 
       <div class="summary">
         <p>Minimize use of vertical whitespace.</p>
@@ -3639,17 +3211,7 @@ std::vector&lt;char *&gt; x;
 
       </div>
 
-      <h2 id="Exceptions_to_the_Rules" style="left: -46px; position: relative;">Exceptions to the Rules
-        <a href="https://google.github.io/styleguide/cppguide.html#Exceptions_to_the_Rules"
-          alt="link to Exceptions_to_the_Rules">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Exceptions_to_the_Rules"
-          alt="link to Exceptions_to_the_Rules">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h2>
+      <h2 id="Exceptions_to_the_Rules" style="left: -46px; position: relative;">Exceptions to the Rules</h2>
 
       <p>The coding conventions described above are mandatory. However, like all good rules, these sometimes
         have exceptions, which we discuss here.</p>
