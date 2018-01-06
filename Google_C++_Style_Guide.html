@@ -1101,26 +1101,6 @@ for (int i = 0; i &lt; 1000000; ++i) {
       <p>Classes are the fundamental unit of code in C++. Naturally, we use them extensively. This section
         lists the main dos and don'ts you should follow when writing a class.</p>
 
-      <h3 id="Structs_vs._Classes" style="left: -46px; position: relative;">Structs vs. Classes
-        <a href="https://google.github.io/styleguide/cppguide.html#Structs_vs._Classes"
-          alt="link to Structs_vs._Classes">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
-
-      <div class="summary">
-        <p>Use a
-          <code>struct</code> only for passive objects that carry data; everything else is a
-          <code>class</code>.</p>
-      </div>
-
-      <div class="stylebody">
-
-        <p>Note that member variables in structs and classes have
-          <a href="https://google.github.io/styleguide/cppguide.html#Variable_Names">different naming rules</a>.</p>
-
-      </div>
-
       <h3 id="Inheritance" style="left: -46px; position: relative;">Inheritance
         <a href="https://google.github.io/styleguide/cppguide.html#Inheritance" alt="link to Inheritance">
           <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
@@ -2536,11 +2516,6 @@ if (iter != v.end()) {
         <a href="https://google.github.io/styleguide/cppguide.html#Formatting" alt="link to Formatting">
           <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
         </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Formatting"
-          alt="link to Formatting">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
       </h2>
 
       <p>Coding style and formatting are pretty arbitrary, but a project is much easier to follow if everyone
@@ -2607,54 +2582,6 @@ if (iter != v.end()) {
           <p class="exception">You needn't be concerned about
             <a href="https://google.github.io/styleguide/cppguide.html#The__define_Guard">header guards</a> that exceed the maximum length. </p>
         </div>
-
-      </div>
-
-      <h3 id="Non-ASCII_Characters" style="left: -46px; position: relative;">Non-ASCII Characters
-        <a href="https://google.github.io/styleguide/cppguide.html#Non-ASCII_Characters"
-          alt="link to Non-ASCII_Characters">
-          <img src="./Google_C++_Style_Guide_files/link.png" width="21" height="21" style="float:left;position:relative;bottom:5px;">
-        </a>
-        <a href="file:///C:/Users/BPiln/Code/hyped/styleguide/Google_C++_Style_Guide.html#Non-ASCII_Characters"
-          alt="link to Non-ASCII_Characters">
-          <img src="file:///C:/Users/BPiln/Code/hyped/styleguide/include/link.png" width="21" height="21"
-            style="float:left;position:relative;bottom:5px;">
-        </a>
-      </h3>
-
-      <div class="summary">
-        <p>Non-ASCII characters should be rare, and must use UTF-8 formatting.
-        </p>
-      </div>
-
-      <div class="stylebody">
-
-        <p>You shouldn't hard-code user-facing text in source, even English, so use of non-ASCII characters
-          should be rare. However, in certain cases it is appropriate to include such words in your code.
-          For example, if your code parses data files from foreign sources, it may be appropriate to
-          hard-code the non-ASCII string(s) used in those data files as delimiters. More commonly, unittest
-          code (which does not need to be localized) might contain non-ASCII strings. In such cases,
-          you should use UTF-8, since that is an encoding understood by most tools able to handle more
-          than just ASCII.
-        </p>
-
-        <p>Hex encoding is also OK, and encouraged where it enhances readability — for example,
-          <code>"\xEF\xBB\xBF"</code>, or, even more simply,
-          <code>u8"\uFEFF"</code>, is the Unicode zero-width no-break space character, which would be invisible if included
-          in the source as straight UTF-8.</p>
-
-        <p>Use the
-          <code>u8</code> prefix to guarantee that a string literal containing
-          <code>\uXXXX</code> escape sequences is encoded as UTF-8. Do not use it for strings containing non-ASCII characters
-          encoded as UTF-8, because that will produce incorrect output if the compiler does not interpret
-          the source file as UTF-8. </p>
-
-        <p>You shouldn't use the C++11
-          <code>char16_t</code> and
-          <code>char32_t</code> character types, since they're for non-UTF-8 text. For similar reasons you also shouldn't
-          use
-          <code>wchar_t</code> (unless you're writing code that interacts with the Windows API, which uses
-          <code>wchar_t</code> extensively).</p>
 
       </div>
 
