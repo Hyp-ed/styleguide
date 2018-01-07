@@ -14,431 +14,21 @@
 <body onload="initStyleGuide();">
   <div id="content">
     <h1>Google C++ Style Guide</h1>
-    <div class="horizontal_toc" id="tocDiv">
-      <div class="toc_title"></div>
-      <h3 class="ignoreLink" id="toc">Table of Contents</h3>
-      <table>
-        <tbody valign="top" class="toc">
-          <tr valign="top">
-            <td>
-              <div class="toc_category">
-                <a href="https://google.github.io/styleguide/cppguide.html#Header_Files">Header Files</a>
-              </div>
-            </td>
-            <td>
-              <div class="toc_stylepoint">
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Self_contained_Headers">Self-contained Headers</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#The__define_Guard">The #define Guard</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Forward_Declarations">Forward Declarations</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Inline_Functions">Inline Functions</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Names_and_Order_of_Includes">Names and Order of Includes</a>
-                </li>
-              </div>
-            </td>
-          </tr>
-          <tr valign="top">
-            <td>
-              <div class="toc_category">
-                <a href="https://google.github.io/styleguide/cppguide.html#Scoping">Scoping</a>
-              </div>
-            </td>
-            <td>
-              <div class="toc_stylepoint">
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Namespaces">Namespaces</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Unnamed_Namespaces_and_Static_Variables">Unnamed Namespaces and Static Variables
-                  </a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Nonmember,_Static_Member,_and_Global_Functions">Nonmember, Static Member, and Global Functions</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Local_Variables">Local Variables</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Static_and_Global_Variables">Static and Global Variables</a>
-                </li>
-              </div>
-            </td>
-          </tr>
-          <tr valign="top">
-            <td>
-              <div class="toc_category">
-                <a href="https://google.github.io/styleguide/cppguide.html#Classes">Classes</a>
-              </div>
-            </td>
-            <td>
-              <div class="toc_stylepoint">
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Doing_Work_in_Constructors">Doing Work in Constructors</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Implicit_Conversions">Implicit Conversions</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Copyable_Movable_Types">Copyable and Movable Types</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Structs_vs._Classes">Structs vs. Classes</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Inheritance">Inheritance</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Multiple_Inheritance">Multiple Inheritance</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Interfaces">Interfaces</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Operator_Overloading">Operator Overloading</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Access_Control">Access Control</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Declaration_Order">Declaration Order</a>
-                </li>
-              </div>
-            </td>
-          </tr>
-          <tr valign="top">
-            <td>
-              <div class="toc_category">
-                <a href="https://google.github.io/styleguide/cppguide.html#Functions">Functions</a>
-              </div>
-            </td>
-            <td>
-              <div class="toc_stylepoint">
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Function_Parameter_Ordering">Parameter Ordering</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Write_Short_Functions">Write Short Functions</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Reference_Arguments">Reference Arguments</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Function_Overloading">Function Overloading</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Default_Arguments">Default Arguments</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#trailing_return">Trailing Return Type Syntax</a>
-                </li>
-              </div>
-            </td>
-          </tr>
-          <tr valign="top">
-            <td>
-              <div class="toc_category">
-                <a href="https://google.github.io/styleguide/cppguide.html#Google-Specific_Magic">Google-Specific Magic</a>
-              </div>
-            </td>
-            <td>
-              <div class="toc_stylepoint">
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Ownership_and_Smart_Pointers">Ownership and Smart Pointers</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#cpplint">cpplint</a>
-                </li>
-              </div>
-            </td>
-          </tr>
-          <tr valign="top">
-            <td>
-              <div class="toc_category">
-                <a href="https://google.github.io/styleguide/cppguide.html#Other_C++_Features">Other C++ Features</a>
-              </div>
-            </td>
-            <td>
-              <div class="toc_stylepoint">
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Rvalue_references">Rvalue References</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Friends">Friends</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Exceptions">Exceptions</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Run-Time_Type_Information__RTTI_">Run-Time Type Information (RTTI)</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Casting">Casting</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Streams">Streams</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Preincrement_and_Predecrement">Preincrement and Predecrement</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Use_of_const">Use of const</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Use_of_constexpr">Use of constexpr</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Integer_Types">Integer Types</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#64-bit_Portability">64-bit Portability</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Preprocessor_Macros">Preprocessor Macros</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#0_and_nullptr/NULL">0 and nullptr/NULL</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#sizeof">sizeof</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#auto">auto</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Braced_Initializer_List">Braced Initializer List</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Lambda_expressions">Lambda expressions</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Template_metaprogramming">Template metaprogramming</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Boost">Boost</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#std_hash">std::hash</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#C++11">C++11</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Nonstandard_Extensions">Nonstandard Extensions</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Aliases">Aliases</a>
-                </li>
-              </div>
-            </td>
-          </tr>
-          <tr valign="top">
-            <td>
-              <div class="toc_category">
-                <a href="https://google.github.io/styleguide/cppguide.html#Naming">Naming</a>
-              </div>
-            </td>
-            <td>
-              <div class="toc_stylepoint">
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#General_Naming_Rules">General Naming Rules</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#File_Names">File Names</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Type_Names">Type Names</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Variable_Names">Variable Names</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Constant_Names">Constant Names</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Function_Names">Function Names</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Namespace_Names">Namespace Names</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Enumerator_Names">Enumerator Names</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Macro_Names">Macro Names</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Exceptions_to_Naming_Rules">Exceptions to Naming Rules</a>
-                </li>
-              </div>
-            </td>
-          </tr>
-          <tr valign="top">
-            <td>
-              <div class="toc_category">
-                <a href="https://google.github.io/styleguide/cppguide.html#Comments">Comments</a>
-              </div>
-            </td>
-            <td>
-              <div class="toc_stylepoint">
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Comment_Style">Comment Style</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#File_Comments">File Comments</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Class_Comments">Class Comments</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Function_Comments">Function Comments</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Variable_Comments">Variable Comments</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Implementation_Comments">Implementation Comments</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Punctuation,_Spelling_and_Grammar">Punctuation, Spelling and Grammar</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#TODO_Comments">TODO Comments</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Deprecation_Comments">Deprecation Comments</a>
-                </li>
-              </div>
-            </td>
-          </tr>
-          <tr valign="top">
-            <td>
-              <div class="toc_category">
-                <a href="https://google.github.io/styleguide/cppguide.html#Formatting">Formatting</a>
-              </div>
-            </td>
-            <td>
-              <div class="toc_stylepoint">
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Line_Length">Line Length</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Non-ASCII_Characters">Non-ASCII Characters</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Spaces_vs._Tabs">Spaces vs. Tabs</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Function_Declarations_and_Definitions">Function Declarations and Definitions</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Formatting_Lambda_Expressions">Lambda Expressions</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Function_Calls">Function Calls</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Braced_Initializer_List_Format">Braced Initializer List Format</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Conditionals">Conditionals</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Loops_and_Switch_Statements">Loops and Switch Statements</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Pointer_and_Reference_Expressions">Pointer and Reference Expressions</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Boolean_Expressions">Boolean Expressions</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Return_Values">Return Values</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Variable_and_Array_Initialization">Variable and Array Initialization</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Preprocessor_Directives">Preprocessor Directives</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Class_Format">Class Format</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Constructor_Initializer_Lists">Constructor Initializer Lists</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Namespace_Formatting">Namespace Formatting</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Horizontal_Whitespace">Horizontal Whitespace</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Vertical_Whitespace">Vertical Whitespace</a>
-                </li>
-              </div>
-            </td>
-          </tr>
-          <tr valign="top">
-            <td>
-              <div class="toc_category">
-                <a href="https://google.github.io/styleguide/cppguide.html#Exceptions_to_the_Rules">Exceptions to the Rules</a>
-              </div>
-            </td>
-            <td>
-              <div class="toc_stylepoint">
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Existing_Non-conformant_Code">Existing Non-conformant Code</a>
-                </li>
-                <li class="toc_entry">
-                  <a href="https://google.github.io/styleguide/cppguide.html#Windows_Code">Windows Code</a>
-                </li>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="toc_title"></div>
-      <h3 class="ignoreLink" id="toc">Table of Contents</h3>
-      <table>
-        <tbody valign="top" class="toc"></tbody>
-      </table>
-    </div>
+    <div class="horizontal_toc" id="tocDiv"></div>
 
     <div class="main_body">
 
       <h2 class="ignoreLink" id="Background">Background</h2>
 
-      <p>C++ is one of the main development languages used by many of Google's open-source projects. As
-        every C++ programmer knows, the language has many powerful features, but this power brings with
-        it complexity, which in turn can make code more bug-prone and harder to read and maintain.</p>
-
-      <p>The goal of this guide is to manage this complexity by describing in detail the dos and don'ts
-        of writing C++ code. These rules exist to keep the code base manageable while still allowing
-        coders to use C++ language features productively.</p>
-
-      <p>
-        <em>Style</em>, also known as readability, is what we call the conventions that govern our C++ code.
-        The term Style is a bit of a misnomer, since these conventions cover far more than just source
-        file formatting.</p>
-
-      <p>
-        Most open-source projects developed by Google conform to the requirements in this guide.
+      <p>C++ is the main development language in HypED. Since we will have dozens of developers coding
+        for the pod, it is very important that everyone adheres to the same code style. That way,
+        our code will be easily readable and navigable by anyone, not just the author.
       </p>
 
-
-
-
-
-      <p>Note that this guide is not a C++ tutorial: we assume that the reader is familiar with the language.
-        </p>
+      <p>Note that this guide is not a C++ tutorial: we assume that the reader is familiar with the
+        language. If you do not understand something then it either means that there is a typo, in which
+        case please tell Brano, or that you need to brush up on your C++.
+      </p>
 
       <h3 id="Goals" style="left: -46px; position: relative;">Goals of the Style Guide</h3>
       <div class="stylebody">
@@ -446,7 +36,7 @@
 
         <p>There are a few core goals that we believe this guide should serve. These are the fundamental
           <b>why</b>s that underlie all of the individual rules. By bringing these ideas to the fore, we
-          hope to ground discussions and make it clearer to our broader community why the rules are in
+          hope to ground discussions and make it clearer why the rules are in
           place and why particular decisions have been made. If you understand what goals each rule is
           serving, it should be clearer to everyone when a rule may be waived (some can be), and what
           sort of argument or alternative would be necessary to change a rule in the guide.</p>
@@ -454,71 +44,19 @@
         <p>The goals of the style guide as we currently see them are as follows:</p>
         <dl>
           <dt>Style rules should pull their weight</dt>
-          <dd>The benefit of a style rule must be large enough to justify asking all of our engineers to
-            remember it. The benefit is measured relative to the codebase we would get without the rule,
+          <dd>The benefit of a rule is measured relative to the codebase we would get without the rule,
             so a rule against a very harmful practice may still have a small benefit if people are unlikely
             to do it anyway. This principle mostly explains the rules we don’t have, rather than the
-            rules we do: for example,
-            <code>goto</code> contravenes many of the following principles, but is already vanishingly rare, so the Style
-            Guide doesn’t discuss it.</dd>
+            rules we do: for example, <code>goto</code> contravenes many of the following principles,
+            but is already vanishingly rare, so the Style Guide doesn’t discuss it.</dd>
 
           <dt>Optimize for the reader, not the writer</dt>
-          <dd>Our codebase (and most individual components submitted to it) is expected to continue for quite
-            some time. As a result, more time will be spent reading most of our code than writing it.
-            We explicitly choose to optimize for the experience of our average software engineer reading,
-            maintaining, and debugging code in our codebase rather than ease when writing said code.
-            "Leave a trace for the reader" is a particularly common sub-point of this principle: When
-            something surprising or unusual is happening in a snippet of code (for example, transfer
-            of pointer ownership), leaving textual hints for the reader at the point of use is valuable
-            (
-            <code>std::unique_ptr</code> demonstrates the ownership transfer unambiguously at the call site). </dd>
-
-          <dt>Be consistent with existing code</dt>
-          <dd>Using one style consistently through our codebase lets us focus on other (more important) issues.
-            Consistency also allows for automation: tools that format your code or adjust your
-            <code>#include</code>s only work properly when your code is consistent with the expectations of the tooling. In
-            many cases, rules that are attributed to "Be Consistent" boil down to "Just pick one and
-            stop worrying about it"; the potential value of allowing flexibility on these points is outweighed
-            by the cost of having people argue over them. </dd>
-
-          <dt>Be consistent with the broader C++ community when appropriate</dt>
-          <dd>Consistency with the way other organizations use C++ has value for the same reasons as consistency
-            within our code base. If a feature in the C++ standard solves a problem, or if some idiom
-            is widely known and accepted, that's an argument for using it. However, sometimes standard
-            features and idioms are flawed, or were just designed without our codebase's needs in mind.
-            In those cases (as described below) it's appropriate to constrain or ban standard features.
-            In some cases we prefer a homegrown or third-party library over a library defined in the
-            C++ Standard, either out of perceived superiority or insufficient value to transition the
-            codebase to the standard interface.</dd>
-
-          <dt>Avoid surprising or dangerous constructs</dt>
-          <dd>C++ has features that are more surprising or dangerous than one might think at a glance. Some
-            style guide restrictions are in place to prevent falling into these pitfalls. There is a
-            high bar for style guide waivers on such restrictions, because waiving such rules often directly
-            risks compromising program correctness.
-          </dd>
-
-          <dt>Avoid constructs that our average C++ programmer would find tricky or hard to maintain</dt>
-          <dd>C++ has features that may not be generally appropriate because of the complexity they introduce
-            to the code. In widely used code, it may be more acceptable to use trickier language constructs,
-            because any benefits of more complex implementation are multiplied widely by usage, and the
-            cost in understanding the complexity does not need to be paid again when working with new
-            portions of the codebase. When in doubt, waivers to rules of this type can be sought by asking
-            your project leads. This is specifically important for our codebase because code ownership
-            and team membership changes over time: even if everyone that works with some piece of code
-            currently understands it, such understanding is not guaranteed to hold a few years from now.</dd>
-
-          <dt>Be mindful of our scale</dt>
-          <dd>With a codebase of 100+ million lines and thousands of engineers, some mistakes and simplifications
-            for one engineer can become costly for many. For instance it's particularly important to
-            avoid polluting the global namespace: name collisions across a codebase of hundreds of millions
-            of lines are difficult to work with and hard to avoid if everyone puts things into the global
-            namespace.
-          </dd>
-
-          <dt>Concede to optimization when necessary</dt>
-          <dd>Performance optimizations can sometimes be necessary and appropriate, even when they conflict
-            with the other principles of this document.
+          <dd>Due to time constraints, much of our code might end up being developed solely by individual
+            people. Hence it is very important that everyone can read and navigate everyone elses code
+            easily should they need to take over the work.
+            We optimize for the ease of reading, maintaining, and debugging code in our codebase rather
+            than ease of writing said code. "Leave a trace for the reader" is a particularly common
+            sub-point of this principle.
           </dd>
         </dl>
 
@@ -527,7 +65,7 @@
           conventions of the entire Google C++ community, not just your personal preferences or those
           of your team. Be skeptical about and reluctant to use clever or unusual constructs: the absence
           of a prohibition is not the same as a license to proceed. Use your judgment, and if you are
-          unsure, please don't hesitate to ask your project leads to get additional input.
+          unsure, please don't hesitate to ask on Slack to get additional input.
         </p>
 
       </div>
