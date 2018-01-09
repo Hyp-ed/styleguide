@@ -83,15 +83,13 @@
       <p>Correct use of header files can make a huge difference to the readability, size and performance
         of your code.</p>
 
-      <p>The following rules will guide you through the various pitfalls of using header files.</p>
-
       <a id="The_-inl.h_Files"></a>
       <h3 id="Self_contained_Headers" style="left: -46px; position: relative;">Self-contained Headers</h3>
 
       <div class="summary">
         <p>Header files should be self-contained (compile on their own) and end in
-          <code>.h</code>. Non-header files that are meant for inclusion should end in
-          <code>.inc</code> and be used sparingly.</p>
+          <code>.h</code>. Non-header (<code>.cpp</code>) files  must not be included
+          from  other files.
       </div>
 
       <div class="stylebody">
@@ -99,24 +97,11 @@
           to special conditions to include the header. Specifically, a header should have
           <a href="https://google.github.io/styleguide/cppguide.html#The__define_Guard">header guards</a> and include all other headers it needs.</p>
 
-        <p>Prefer placing the definitions for template and inline functions in the same file as their declarations.
+        <p>Place the definitions for template and inline functions in the same file as their declarations.
           The definitions of these constructs must be included into every
-          <code>.cc</code> file that uses them, or the program may fail to link in some build configurations. If declarations
-          and definitions are in different files, including the former should transitively include the
-          latter. Do not move these definitions to separately included header files (
+          <code>.cc</code> file that uses them, or the program may fail to link in some build configurations.
+          Do not move these definitions to separately included header files (
           <code>-inl.h</code>); this practice was common in the past, but is no longer allowed.</p>
-
-        <p>As an exception, a template that is explicitly instantiated for all relevant sets of template
-          arguments, or that is a private implementation detail of a class, is allowed to be defined
-          in the one and only
-          <code>.cc</code> file that instantiates the template.</p>
-
-        <p>There are rare cases where a file designed to be included is not self-contained. These are typically
-          intended to be included at unusual locations, such as the middle of another file. They might
-          not use
-          <a href="https://google.github.io/styleguide/cppguide.html#The__define_Guard">header guards</a>, and might not include their prerequisites. Name such files with the
-          <code>.inc</code> extension. Use sparingly, and prefer self-contained headers when possible.
-        </p>
 
       </div>
 
@@ -146,136 +131,6 @@
 
       </div>
 
-      <h3 id="Forward_Declarations" style="left: -46px; position: relative;">Forward Declarations</h3>
-
-      <div class="summary">
-        <p>Avoid using forward declarations where possible. Just
-          <code>#include</code> the headers you need.</p>
-      </div>
-
-      <div class="stylebody">
-
-        <div class="definition">
-          <p>A "forward declaration" is a declaration of a class, function, or template without an associated
-            definition.</p>
-        </div>
-
-        <div class="pros">
-          <ul>
-            <li>Forward declarations can save compile time, as
-              <code>#include</code>s force the compiler to open more files and process more input.</li>
-
-            <li>Forward declarations can save on unnecessary recompilation.
-              <code>#include</code>s can force your code to be recompiled more often, due to unrelated changes in the header.</li>
-          </ul>
-        </div>
-
-        <div class="cons">
-          <ul>
-            <li>Forward declarations can hide a dependency, allowing user code to skip necessary recompilation
-              when headers change.
-            </li>
-
-            <li>A forward declaration may be broken by subsequent changes to the library. Forward declarations
-              of functions and templates can prevent the header owners from making otherwise-compatible
-              changes to their APIs, such as widening a parameter type, adding a template parameter with
-              a default value, or migrating to a new namespace.</li>
-
-            <li>Forward declaring symbols from namespace
-              <code>std::</code> yields undefined behavior.</li>
-
-            <li>It can be difficult to determine whether a forward declaration or a full
-              <code>#include</code> is needed. Replacing an
-              <code>#include</code> with a forward declaration can silently change the meaning of code:
-              <pre>      // b.h:
-      struct B {};
-      struct D : B {};
-
-      // good_user.cc:
-      #include "b.h"
-      void f(B*);
-      void f(void*);
-      void test(D* x) { f(x); }  // calls f(B*)
-      </pre> If the
-              <code>#include</code> was replaced with forward decls for
-              <code>B</code> and
-              <code>D</code>,
-              <code>test()</code> would call
-              <code>f(void*)</code>.
-            </li>
-
-            <li>Forward declaring multiple symbols from a header can be more verbose than simply
-              <code>#include</code>ing the header.</li>
-
-            <li>Structuring code to enable forward declarations (e.g. using pointer members instead of object
-              members) can make the code slower and more complex.</li>
-
-
-          </ul>
-        </div>
-
-        <div class="decision">
-          <ul>
-            <li>Try to avoid forward declarations of entities defined in another project.</li>
-
-            <li>When using a function declared in a header file, always
-              <code>#include</code> that header.</li>
-
-            <li>When using a class template, prefer to
-              <code>#include</code> its header file.</li>
-          </ul>
-
-          <p>Please see
-            <a href="https://google.github.io/styleguide/cppguide.html#Names_and_Order_of_Includes">Names and Order of Includes</a> for rules about when to #include a header.</p>
-        </div>
-
-      </div>
-
-      <h3 id="Inline_Functions" style="left: -46px; position: relative;">Inline Functions</h3>
-
-      <div class="summary">
-        <p>Define functions inline only when they are small, say, 10 lines or fewer.</p>
-      </div>
-
-      <div class="stylebody">
-
-        <div class="definition">
-          <p>You can declare functions in a way that allows the compiler to expand them inline rather than
-            calling them through the usual function call mechanism.</p>
-        </div>
-
-        <div class="pros">
-          <p>Inlining a function can generate more efficient object code, as long as the inlined function
-            is small. Feel free to inline accessors and mutators, and other short, performance-critical
-            functions.</p>
-        </div>
-
-        <div class="cons">
-          <p>Overuse of inlining can actually make programs slower. Depending on a function's size, inlining
-            it can cause the code size to increase or decrease. Inlining a very small accessor function
-            will usually decrease code size while inlining a very large function can dramatically increase
-            code size. On modern processors smaller code usually runs faster due to better use of the
-            instruction cache.</p>
-        </div>
-
-        <div class="decision">
-          <p>A decent rule of thumb is to not inline a function if it is more than 10 lines long. Beware
-            of destructors, which are often longer than they appear because of implicit member- and base-destructor
-            calls!</p>
-
-          <p>Another useful rule of thumb: it's typically not cost effective to inline functions with loops
-            or switch statements (unless, in the common case, the loop or switch statement is never executed).</p>
-
-          <p>It is important to know that functions are not always inlined even if they are declared as
-            such; for example, virtual and recursive functions are not normally inlined. Usually recursive
-            functions should not be inline. The main reason for making a virtual function inline is to
-            place its definition in the class, either for convenience or to document its behavior, e.g.,
-            for accessors and mutators.
-          </p>
-        </div>
-
-      </div>
-
       <h3 id="Names_and_Order_of_Includes" style="left: -46px; position: relative;">Names and Order of Includes</h3>
 
       <div class="summary">
@@ -292,7 +147,7 @@
           <code>.</code> (the current directory) or
           <code>..</code> (the parent directory). For example,
 
-          <code>google-awesome-project/src/base/logging.h</code> should be included as:</p>
+          <code>project/src/base/logging.h</code> should be included as:</p>
 
         <pre>#include "base/logging.h"
 </pre>
@@ -334,13 +189,9 @@
 
 
 
-        <p>Within each section the includes should be ordered alphabetically. Note that older code might
-          not conform to this rule and should be fixed when convenient.</p>
+        <p>Within each section the includes should be ordered alphabetically.</p>
 
-        <p>You should include all the headers that define the symbols you rely upon, except in the unusual
-          case of
-          <a href="https://google.github.io/styleguide/cppguide.html#Forward_Declarations">forward declaration
-          </a>. If you rely on symbols from
+        <p>You should include all the headers that define the symbols you rely upon. If you rely on symbols from
           <code>bar.h</code>, don't count on the fact that you included
           <code>foo.h</code> which (currently) includes
           <code>bar.h</code>: include
@@ -348,13 +199,13 @@
           <code>foo.h</code> explicitly demonstrates its intent to provide you the symbols of
           <code>bar.h</code>. However, any includes present in the related header do not need to be included again in the
           related
-          <code>cc</code> (i.e.,
+          <code>.cc</code> (i.e.,
           <code>foo.cc</code> can rely on
           <code>foo.h</code>'s includes).</p>
 
         <p>For example, the includes in
 
-          <code>google-awesome-project/src/foo/internal/fooserver.cc</code> might look like this:</p>
+          <code>project/src/foo/internal/fooserver.cc</code> might look like this:</p>
 
 
         <pre>#include "foo/server/fooserver.h"
@@ -370,123 +221,10 @@
 #include "foo/server/bar.h"
 </pre>
 
-        <p class="exception">Sometimes, system-specific code needs conditional includes. Such code can put conditional includes
-          after other includes. Of course, keep your system-specific code small and localized. Example:</p>
-
-        <pre>#include "foo/public/fooserver.h"
-
-#include "base/port.h"  // For LANG_CXX11.
-
-#ifdef LANG_CXX11
-#include &lt;initializer_list&gt;
-#endif  // LANG_CXX11
-</pre>
-
       </div>
 
       <h2 id="Scoping" style="left: -46px; position: relative;">Scoping</h2>
-      <h3 id="Namespaces" style="left: -46px; position: relative;">Namespaces</h3>
       
-      <div class="stylebody">
-        <div class="decision">
-          <p>Namespaces should be used as follows:</p>
-
-          <ul>
-            <li>Follow the rules on
-              <a href="https://google.github.io/styleguide/cppguide.html#Namespace_Names">Namespace Names</a>.
-            </li>
-            <li>Terminate namespaces with comments as shown in the given examples.
-            </li>
-            <li>
-
-              <p>Namespaces wrap the entire source file after includes,
-                <a href="https://gflags.github.io/gflags/">
-                  gflags</a> definitions/declarations and forward declarations of classes from other
-                namespaces.</p>
-
-              <pre>
-// In the .h file
-namespace mynamespace {
-
-// All declarations are within the namespace scope.
-// Notice the lack of indentation.
-class MyClass {
- public:
-  ...
-  void Foo();
-};
-
-}  // namespace mynamespace
-</pre>
-
-              <pre>// In the .cc file
-namespace mynamespace {
-
-// Definition of functions is within scope of the namespace.
-void MyClass::Foo() {
-  ...
-}
-
-}  // namespace mynamespace
-</pre>
-
-              <p>More complex
-                <code>.cc</code> files might have additional details, like flags or using-declarations.</p>
-
-              <pre>#include "a.h"
-
-DEFINE_FLAG(bool, someflag, false, "dummy flag");
-
-namespace a {
-
-using ::foo::bar;
-
-...code for a...         // Code goes against the left margin.
-
-}  // namespace a
-</pre>
-            </li>
-
-            <li>
-              <p>You may not use a
-                <i>using-directive</i>
-                to make all names from a namespace available.</p>
-
-              <pre class="badcode">// Forbidden -- This pollutes the namespace.
-using namespace foo;
-</pre>
-            </li>
-
-            <li>
-              <p>Do not use
-                <i>Namespace aliases</i> at namespace scope in header files except in explicitly marked
-                internal-only namespaces, because anything imported into a namespace in a header file
-                becomes part of the public API exported by that file.</p>
-
-              <pre>// Shorten access to some commonly used names in .cc files.
-namespace baz = ::foo::bar::baz;
-</pre>
-
-              <pre>// Shorten access to some commonly used names (in a .h file).
-namespace librarian {
-namespace impl {  // Internal, not part of the API.
-namespace sidetable = ::pipeline_diagnostics::sidetable;
-}  // namespace impl
-
-inline void my_inline_function() {
-  // namespace alias local to a function (or method).
-  namespace baz = ::foo::bar::baz;
-  ...
-}
-}  // namespace librarian
-</pre>
-
-            </li>
-            <li>Do not use inline namespaces.</li>
-          </ul>
-        </div>
-      </div>
-
       <h3 id="Local_Variables" style="left: -46px; position: relative;">Local Variables
       </h3>
 
@@ -509,13 +247,6 @@ i = f();      // Bad -- initialization separate from declaration.
         <pre>int j = g();  // Good -- declaration has initialization.
 </pre>
 
-        <pre class="badcode">std::vector&lt;int&gt; v;
-v.push_back(1);  // Prefer initializing using brace initialization.
-v.push_back(2);
-</pre>
-
-        <pre>std::vector&lt;int&gt; v = {1, 2};  // Good -- v starts initialized.
-</pre>
 
         <p>Variables needed for
           <code>if</code>,
@@ -568,20 +299,6 @@ for (int i = 0; i &lt; 1000000; ++i) {
           is present, the reader has to check all ancestors of the class in question
           to determine if the function or destructor is virtual or not.</p>
 
-      </div>
-
-      <h3 id="Access_Control" style="left: -46px; position: relative;">Access Control</h3>
-
-      <div class="summary">
-        <p> Make data members
-          <code>private</code>, unless they are
-          <code>static const</code> (and follow the
-          <a href="https://google.github.io/styleguide/cppguide.html#Constant_Names">
-            naming convention for constants</a>). For technical reasons, we allow data members of a test
-          fixture class to be
-          <code>protected</code> when using
-          <a href="https://github.com/google/googletest">Google Test
-          </a>).</p>
       </div>
 
       <h3 id="Declaration_Order" style="left: -46px; position: relative;">Declaration Order</h3>
@@ -714,31 +431,6 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
 
       <h2 id="Other_C++_Features" style="left: -46px; position: relative;">Other C++ Features</h2>
-
-      <h3 id="Friends" style="left: -46px; position: relative;">Friends</h3>
-
-      <div class="summary">
-        <p>We allow use of
-          <code>friend</code> classes and functions, within reason.</p>
-      </div>
-
-      <div class="stylebody">
-
-        <p>Friends should usually be defined in the same file so that the reader does not have to look in
-          another file to find uses of the private members of a class. A common use of
-          <code>friend</code> is to have a
-          <code>FooBuilder</code> class be a friend of
-          <code>Foo</code> so that it can construct the inner state of
-          <code>Foo</code> correctly, without exposing this state to the world. In some cases it may be useful to make
-          a unittest class a friend of the class it tests.</p>
-
-        <p>Friends extend, but do not break, the encapsulation boundary of a class. In some cases this is
-          better than making a member public when you want to give only one other class access to it.
-          However, most classes should interact with other classes solely through their public members.
-        </p>
-
-      </div>
-
       
       <h3 id="Casting" style="left: -46px; position: relative;">Casting</h3>
 
@@ -2622,6 +2314,29 @@ void foo() {  // Correct.  No extra indentation within namespace.
 
         <pre>namespace foo {
 namespace bar {
+</pre>
+<p>Terminate namespaces with comments.</p>
+    <pre>
+// In the .h file
+namespace mynamespace {
+
+class MyClass {
+public:
+...
+void Foo();
+};
+
+}  // namespace mynamespace
+</pre>
+
+    <pre>// In the .cc file
+namespace mynamespace {
+
+void MyClass::Foo() {
+...
+}
+
+}  // namespace mynamespace
 </pre>
 
       </div>
