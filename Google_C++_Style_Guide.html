@@ -431,7 +431,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
 
       <h2 id="Other_C++_Features" style="left: -46px; position: relative;">Other C++ Features</h2>
-      
+
       <h3 id="Casting" style="left: -46px; position: relative;">Casting</h3>
 
       <div class="summary">
@@ -697,40 +697,16 @@ int cstmr_id;              // Deletes internal letters.
       <h3 id="File_Names" style="left: -46px; position: relative;">File Names</h3>
 
       <div class="summary">
-        <p>Filenames should be all lowercase and can include underscores (
-          <code>_</code>) or dashes (
-          <code>-</code>). Follow the convention that your project uses. If there is no consistent local pattern to
-          follow, prefer "_".</p>
+        <p>Filenames should be all lowercase and can include underscores (<code>_</code>) or dashes
+          (<code>-</code>) for separating words. Underscores are preferred.</p>
       </div>
 
       <div class="stylebody">
 
-        <p>Examples of acceptable file names:</p>
-
-        <ul>
-          <li>
-            <code>my_useful_class.cc</code>
-          </li>
-          <li>
-            <code>my-useful-class.cc</code>
-          </li>
-          <li>
-            <code>myusefulclass.cc</code>
-          </li>
-          <li>
-            <code>myusefulclass_test.cc // _unittest and _regtest are deprecated.</code>
-          </li>
-        </ul>
 
         <p>C++ files should end in
           <code>.cc</code> and header files should end in
-          <code>.h</code>. Files that rely on being textually included at specific points should end in
-          <code>.inc</code> (see also the section on
-          <a href="https://google.github.io/styleguide/cppguide.html#Self_contained_Headers">self-contained headers</a>).</p>
-
-        <p>Do not use filenames that already exist in
-          <code>/usr/include</code>, such as
-          <code>db.h</code>.</p>
+          <code>.h</code>.
 
         <p>In general, make your filenames very specific. For example, use
           <code>http_server_logs.h</code> rather than
@@ -863,28 +839,16 @@ string tablename;   // OK - all lowercase.
 
       <div class="stylebody">
 
-        <p>Ordinarily, functions should start with a capital letter and have a capital letter for each new
-          word (a.k.a. "
-          <a href="https://en.wikipedia.org/wiki/Camel_case">Camel Case
-          </a>" or "Pascal case"). Such names should not have underscores. Prefer to capitalize acronyms
+        <p>Ordinarily, functions should start with a lowercase letter and have a capital letter for each new
+          word. Such names should not have underscores. Prefer to capitalize acronyms
           as single words (i.e.
-          <code>StartRpc()</code>, not
-          <code>StartRPC()</code>).</p>
+          <code>readImu()</code>, not
+          <code>readIMU()</code>).</p>
 
-        <pre>AddTableEntry()
-DeleteUrl()
-OpenFileOrDie()
+        <pre>addTableEntry()
+deleteUrl()
+openFileOrDie()
 </pre>
-
-        <p>(The same naming rule applies to class- and namespace-scope constants that are exposed as part
-          of an API and that are intended to look like functions, because the fact that they're objects
-          rather than functions is an unimportant implementation detail.)</p>
-
-        <p>Accessors and mutators (get and set functions) may be named like variables. These often correspond
-          to actual member variables, but this is not required. For example,
-          <code>int count()</code> and
-          <code>void
-set_count(int count)</code>.</p>
 
       </div>
 
@@ -895,66 +859,23 @@ set_count(int count)</code>.</p>
         between nested namespaces and well-known top-level namespaces.
       </div>
 
-      <div class="stylebody">
-        <p>The name of a top-level namespace should usually be the name of the project or team whose code
-          is contained in that namespace. The code in that namespace should usually be in a directory
-          whose basename matches the namespace name (or subdirectories thereof).</p>
-
-
-
-
-
-        <p>Keep in mind that the
-          <a href="https://google.github.io/styleguide/cppguide.html#General_Naming_Rules">rule against abbreviated names</a> applies to namespaces just as much as variable names. Code
-          inside the namespace seldom needs to mention the namespace name, so there's usually no particular
-          need for abbreviation anyway.</p>
-
-        <p>Avoid nested namespaces that match well-known top-level namespaces. Collisions between namespace
-          names can lead to surprising build breaks because of name lookup rules. In particular, do not
-          create any nested
-          <code>std</code> namespaces. Prefer unique project identifiers (
-          <code>websearch::index</code>,
-          <code>websearch::index_util</code>) over collision-prone names like
-          <code>websearch::util</code>.</p>
-
-        <p>For
-          <code>internal</code> namespaces, be wary of other code being added to the same
-          <code>internal</code> namespace causing a collision (internal helpers within a team tend to be related and may lead
-          to collisions). In such a situation, using the filename to make a unique internal name is helpful
-          (
-          <code>websearch::index::frobber_internal</code> for use in
-          <code>frobber.h</code>)</p>
-
-      </div>
-
       <h3 id="Enumerator_Names" style="left: -46px; position: relative;">Enumerator Names</h3>
 
       <div class="summary">
-        <p>Enumerators (for both scoped and unscoped enums) should be named
-          <i>either</i> like
-          <a href="https://google.github.io/styleguide/cppguide.html#Constant_Names">constants</a> or like
-          <a href="https://google.github.io/styleguide/cppguide.html#Macro_Names">macros</a>: either
-          <code>kEnumName</code> or
-          <code>ENUM_NAME</code>.</p>
+        <p>Enumerators (for both scoped and unscoped enums) should be named like
+          <a href="https://google.github.io/styleguide/cppguide.html#Constant_Names">constants</a> (e.g. <code>ENUM_NAME</code>).</p>
       </div>
 
       <div class="stylebody">
 
-        <p>Preferably, the individual enumerators should be named like
-          <a href="https://google.github.io/styleguide/cppguide.html#Constant_Names">constants</a>. However, it is also acceptable to name them like
-          <a href="https://google.github.io/styleguide/cppguide.html#Macro_Names">macros</a>. The enumeration name,
-          <code>UrlTableErrors</code> (and
-          <code>AlternateUrlTableErrors</code>), is a type, and therefore mixed case.</p>
+        <p>The individual enumerators should be named like
+          <a href="https://google.github.io/styleguide/cppguide.html#Constant_Names">constants</a>.
+          The enumeration name, <code>UrlTableErrors</code>, is a type, and therefore mixed case.</p>
 
         <pre>enum UrlTableErrors {
   kOK = 0,
   kErrorOutOfMemory,
   kErrorMalformedInput,
-};
-enum AlternateUrlTableErrors {
-  OK = 0,
-  OUT_OF_MEMORY = 1,
-  MALFORMED_INPUT = 2,
 };
 </pre>
 
@@ -981,7 +902,7 @@ enum AlternateUrlTableErrors {
 
         <p>Please see the
           <a href="https://google.github.io/styleguide/cppguide.html#Preprocessor_Macros">description of macros</a>; in general macros should
-          <em>not</em> be used. However, if they are absolutely needed, then they should be named with all
+          <em>not</em> be used. However, if they are needed, then they should be named with all
           capitals and underscores.</p>
 
         <pre>#define ROUND(x) ...
