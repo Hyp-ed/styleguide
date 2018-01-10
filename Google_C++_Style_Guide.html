@@ -961,6 +961,8 @@ openFileOrDie()
 
       <h2 id="Comments" style="left: -46px; position: relative;">Comments</h2>
 
+      <p>Code should be documented well. This serves several purposes. Well documented code is easier for others to understand, which leads to better code maintainability. Furthermore, once a programmer needs to document code, they need to think about the code structure, design, and functionality. This thinking fosters writing better code in general. Documentation can also be used to generate html site for easy navigation through project’s APIs.</p>
+
       <p>Though a pain to write, comments are absolutely vital to keeping our code readable. The following
         rules describe what you should comment and where. But remember: while comments are very important,
         the best code is self-documenting. Giving sensible names to types and variables is much better
@@ -1006,8 +1008,7 @@ openFileOrDie()
 
 
 
-        <p>Every file should contain license boilerplate. Choose the appropriate boilerplate for the license
-          used by the project (for example, Apache 2.0, BSD, LGPL, GPL).</p>
+        <p>Every file should contain license boilerplate.</p>
 
         <p>If you make significant changes to a file with an author line, consider deleting the author line.</p>
 
@@ -1047,10 +1048,7 @@ class GargantuanTableIterator {
 </pre>
 
         <p>The class comment should provide the reader with enough information to know how and when to use
-          the class, as well as any additional considerations necessary to correctly use the class. Document
-          the synchronization assumptions the class makes, if any. If an instance of the class can be
-          accessed by multiple threads, take extra care to document the rules and invariants surrounding
-          multithreaded use.</p>
+          the class, as well as any additional considerations necessary to correctly use the class.</p>
 
         <p>The class comment is often a good place for a small example code snippet demonstrating a simple
           and focused usage of the class.</p>
@@ -1083,50 +1081,29 @@ class GargantuanTableIterator {
           do not describe how the function performs its task. Instead, that should be left to comments
           in the function definition.</p>
 
-        <p>Types of things to mention in comments at the function declaration:
-        </p>
+        <p>Each function declaration should be preceded by a block comment with a brief description of
+          how the function should be used, descriptions of all input parameters, and explanation of the
+          return value (if any). Implementation description of a method can be further extended at the
+          point of definition.</p>
 
-        <ul>
-          <li>What the inputs and outputs are.</li>
-
-          <li>For class member functions: whether the object remembers reference arguments beyond the duration
-            of the method call, and whether it will free them or not.
-          </li>
-
-          <li>If the function allocates memory that the caller must free.</li>
-
-          <li>Whether any of the arguments can be a null pointer.
-          </li>
-
-          <li>If there are any performance implications of how a function is used.</li>
-
-          <li>If the function is re-entrant. What are its synchronization assumptions?</li>
-        </ul>
-
-        <p>Here is an example:</p>
-
-        <pre>// Returns an iterator for this table.  It is the client's
-// responsibility to delete the iterator when it is done with it,
-// and it must not use the iterator once the GargantuanTable object
-// on which the iterator was created has been deleted.
-//
-// The iterator is initially positioned at the beginning of the table.
-//
-// This method is equivalent to:
-//    Iterator* iter = table-&gt;NewIterator();
-//    iter-&gt;Seek("");
-//    return iter;
-// If you are going to immediately seek to another place in the
-// returned iterator, it will be faster to use NewIterator()
-// and avoid the extra seek.
-Iterator* GetIterator() const;
-</pre>
+        <pre>/**
+ * @brief      { function_description }
+ *
+ * @param[in]  c     { parameter_description }
+ * @param[in]  i     { parameter_description }
+ *
+ * @return     { description_of_the_return_value }
+ */
+int foo (char c, int i);
+           </pre>
 
         <p>However, do not be unnecessarily verbose or state the completely obvious. Notice below that it
           is not necessary to say "returns false otherwise" because this is implied.
         </p>
 
-        <pre>// Returns true if the table cannot hold any more entries.
+        <pre>/**
+ * @brief Returns true if the table cannot hold any more entries.
+ */
 bool IsTableFull();
 </pre>
 
@@ -1234,18 +1211,17 @@ if (mmap_budget &gt;= data_size_ &amp;&amp; !MmapData(mmap_chunk_bytes, mlock))
         <p>If you have several comments on subsequent lines, it can often be more readable to line them
           up:</p>
 
-        <pre>DoSomething();                  // Comment here so the comments line up.
-DoSomethingElseThatIsLonger();  // Two spaces between the code and the comment.
+        <pre>doSomething();                  // Comment here so the comments line up.
+doSomethingElseThatIsLonger();  // Two spaces between the code and the comment.
 { // One space before comment when opening a new scope is allowed,
   // thus the comment lines up with the following comments and code.
-  DoSomethingElse();  // Two spaces before line comments normally.
+  doSomethingElse();  // Two spaces before line comments normally.
 }
 std::vector&lt;string&gt; list{
                     // Comments in braced lists describe the next element...
                     "First item",
                     // .. and should be aligned appropriately.
                     "Second item"};
-DoSomething(); /* For trailing block comments, one space is fine. */
 </pre>
 
         <h4 class="stylepoint_subsection">Function Argument Comments</h4>
@@ -1276,7 +1252,7 @@ DoSomething(); /* For trailing block comments, one space is fine. */
         Consider the following example:
 
         <pre class="badcode">// What are these arguments?
-const DecimalNumber product = CalculateProduct(values, 7, false, nullptr);
+const DecimalNumber product = calculateProduct(values, 7, false, nullptr);
 </pre>
 
         <p>versus:</p>
@@ -1285,7 +1261,7 @@ const DecimalNumber product = CalculateProduct(values, 7, false, nullptr);
 options.set_precision_decimals(7);
 options.set_use_cache(ProductOptions::kDontUseCache);
 const DecimalNumber product =
-    CalculateProduct(values, options, /*completion_callback=*/nullptr);
+    calculateProduct(values, options, /*completion_callback=*/nullptr);
 </pre>
 
         <h4 class="stylepoint_subsection">Don'ts</h4>
@@ -1301,19 +1277,19 @@ const DecimalNumber product =
         <pre class="badcode">// Find the element in the vector.  &lt;-- Bad: obvious!
 auto iter = std::find(v.begin(), v.end(), element);
 if (iter != v.end()) {
-  Process(element);
+  process(element);
 }
 </pre> To this:
 
         <pre>// Process "element" unless it was already processed.
 auto iter = std::find(v.begin(), v.end(), element);
 if (iter != v.end()) {
-  Process(element);
+  process(element);
 }
 </pre> Self-describing code doesn't need a comment. The comment from the example above would be obvious:
 
-        <pre>if (!IsAlreadyProcessed(element)) {
-  Process(element);
+        <pre>if (!isAlreadyProcessed(element)) {
+  process(element);
 }
 </pre>
 
@@ -1399,17 +1375,6 @@ if (iter != v.end()) {
         <p>A deprecation comment must include simple, clear directions for people to fix their callsites.
           In C++, you can implement a deprecated function as an inline function that calls the new interface
           point.</p>
-
-        <p>Marking an interface point
-          <code>DEPRECATED</code> will not magically cause any callsites to change. If you want people to actually stop using
-          the deprecated facility, you will have to fix the callsites yourself or recruit a crew to help
-          you.</p>
-
-        <p>New code should not contain calls to deprecated interface points. Use the new interface point
-          instead. If you cannot understand the directions, find the person who created the deprecation
-          and ask them for help using the new interface point.</p>
-
-
 
       </div>
 
