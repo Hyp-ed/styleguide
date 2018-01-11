@@ -95,7 +95,7 @@
       <div class="stylebody">
         <p>All header files should be self-contained. Users and refactoring tools should not have to adhere
           to special conditions to include the header. Specifically, a header should have
-          <a href="https://google.github.io/styleguide/cppguide.html#The__define_Guard">header guards</a> and include all other headers it needs.</p>
+          <a href="#The__define_Guard">header guards</a> and include all other headers it needs.</p>
 
         <p>Place the definitions for template and inline functions in the same file as their declarations.
           The definitions of these constructs must be included into every
@@ -266,8 +266,8 @@ int cstmr_id;              // Deletes internal letters.
 
         <p>Template parameters should follow the naming style for their category: type template parameters
           should follow the rules for
-          <a href="https://google.github.io/styleguide/cppguide.html#Type_Names">type names</a>, and non-type template parameters should follow the rules for
-          <a href="https://google.github.io/styleguide/cppguide.html#Variable_Names">
+          <a href="#Type_Names">type names</a>, and non-type template parameters should follow the rules for
+          <a href="#Variable_Names">
             variable names</a>.
 
         </p>
@@ -383,7 +383,7 @@ string tablename;   // OK - all lowercase.
 
 
         <p>See
-          <a href="https://google.github.io/styleguide/cppguide.html#Structs_vs._Classes">Structs vs. Classes
+          <a href="#Structs_vs._Classes">Structs vs. Classes
           </a> for a discussion of when to use a struct versus a class.</p>
 
       </div>
@@ -442,13 +442,13 @@ openFileOrDie()
 
       <div class="summary">
         <p>Enumerators (for both scoped and unscoped enums) should be named like
-          <a href="https://google.github.io/styleguide/cppguide.html#Constant_Names">constants</a> (e.g. <code>ENUM_NAME</code>).</p>
+          <a href="#Constant_Names">constants</a> (e.g. <code>ENUM_NAME</code>).</p>
       </div>
 
       <div class="stylebody">
 
         <p>The individual enumerators should be named like
-          <a href="https://google.github.io/styleguide/cppguide.html#Constant_Names">constants</a>.
+          <a href="#Constant_Names">constants</a>.
           The enumeration name, <code>UrlTableErrors</code>, is a type, and therefore mixed case.</p>
 
         <pre>enum UrlTableErrors {
@@ -459,7 +459,7 @@ openFileOrDie()
 </pre>
 
         <p>Until January 2009, the style was to name enum values like
-          <a href="https://google.github.io/styleguide/cppguide.html#Macro_Names">macros</a>. This caused problems with name collisions between enum values and macros. Hence,
+          <a href="#Macro_Names">macros</a>. This caused problems with name collisions between enum values and macros. Hence,
           the change to prefer constant-style naming was put in place. New code should prefer constant-style
           naming if possible. However, there is no reason to change old code to use constant-style names,
           unless the old names are actually causing a compile-time problem.</p>
@@ -472,7 +472,7 @@ openFileOrDie()
 
       <div class="summary">
         <p>You're not really going to
-          <a href="https://google.github.io/styleguide/cppguide.html#Preprocessor_Macros">
+          <a href="#Preprocessor_Macros">
             define a macro</a>, are you? If you do, they're like this:
           <code>MY_MACRO_THAT_SCARES_SMALL_CHILDREN</code>.</p>
       </div>
@@ -480,7 +480,7 @@ openFileOrDie()
       <div class="stylebody">
 
         <p>Please see the
-          <a href="https://google.github.io/styleguide/cppguide.html#Preprocessor_Macros">description of macros</a>; in general macros should
+          <a href="#Preprocessor_Macros">description of macros</a>; in general macros should
           <em>not</em> be used. However, if they are needed, then they should be named with all
           capitals and underscores.</p>
 
@@ -616,8 +616,8 @@ openFileOrDie()
 
         <pre>// Iterates over the contents of a GargantuanTable.
 // Example:
-//    GargantuanTableIterator* iter = table-&gt;NewIterator();
-//    for (iter-&gt;Seek("foo"); !iter-&gt;done(); iter-&gt;Next()) {
+//    GargantuanTableIterator* iter = table-&gt;newIterator();
+//    for (iter-&gt;seek("foo"); !iter-&gt;done(); iter-&gt;next()) {
 //      process(iter-&gt;key(), iter-&gt;value());
 //    }
 //    delete iter;
@@ -683,7 +683,7 @@ int foo (char c, int i);
         <pre>/**
  * @brief Returns true if the table cannot hold any more entries.
  */
-bool IsTableFull();
+bool isTableFull();
 </pre>
 
         <p>When documenting function overrides, focus on the specifics of the override itself, rather than
@@ -972,8 +972,7 @@ if (iter != v.end()) {
 
       <div class="stylebody">
 
-        <p>This rule is controversial, but we are innovative so we will not stick to the old 80-character
-          limit.</p>
+        <p>We are innovative so we will not stick to the old 80-character limit.</p>
 
         <div class="pros">
           <p>Proponents argue that a wider line can make code more readable. The 80-column limit
@@ -1005,7 +1004,7 @@ if (iter != v.end()) {
             <code>#include</code> statement with a long path may exceed 100 columns.</p>
 
           <p class="exception">You needn't be concerned about
-            <a href="https://google.github.io/styleguide/cppguide.html#The__define_Guard">header guards</a> that exceed the maximum length. </p>
+            <a href="#The__define_Guard">header guards</a> that exceed the maximum length. </p>
         </div>
 
       </div>
@@ -1123,7 +1122,7 @@ void Circle::rotate(double /*radians*/)
 
         <pre class="badcode">// Bad - if someone wants to implement later, it's not clear what the
 // variable means.
-void Circle::Rotate(double) {}
+void Circle::rotate(double) {}
 </pre>
 
       </div>
@@ -1164,14 +1163,14 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i
       <div class="stylebody">
 
         <p>Function calls have the following format:</p>
-        <pre>bool result = DoSomething(argument1, argument2, argument3);
+        <pre>bool result = doSomething(argument1, argument2, argument3);
 </pre>
 
         <p>If the arguments do not all fit on one line, they should be broken up onto multiple lines, with
           each subsequent line aligned with the first argument. Do not add spaces after the open paren
           or before the close paren:
         </p>
-        <pre>bool result = DoSomething(averyveryveryverylongargument1,
+        <pre>bool result = doSomething(averyveryveryverylongargument1,
                           argument2, argument3);
 </pre>
 
@@ -1197,7 +1196,7 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i
           confusing nature of the expressions that make up some arguments, try creating variables that
           capture those arguments in a descriptive name:</p>
         <pre>int my_heuristic = scores[x] * y + bases[x];
-bool result = DoSomething(my_heuristic, x, y, z);
+bool result = doSomething(my_heuristic, x, y, z);
 </pre>
 
         <p>Or put the confusing argument on its own line with an explanatory comment:</p>
@@ -1223,7 +1222,7 @@ my_widget.transform(x1, x2, x3,
 
       <div class="summary">
         <p>Format a
-          <a href="https://google.github.io/styleguide/cppguide.html#Braced_Initializer_List">braced initializer list</a>
+          <a href="#Braced_Initializer_List">braced initializer list</a>
           exactly like you would format a function call in its place.</p>
       </div>
 
@@ -1475,7 +1474,7 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
 
       <div class="summary">
         <p>When you have a boolean expression that is longer than the
-          <a href="https://google.github.io/styleguide/cppguide.html#Line_Length">standard line length</a>, be consistent in how you break up the lines.</p>
+          <a href="#Line_Length">standard line length</a>, be consistent in how you break up the lines.</p>
       </div>
 
       <div class="stylebody">
@@ -1588,21 +1587,21 @@ int pi{3.14};  // Compile error: narrowing conversion.
         <pre>// Good - directives at beginning of line
   if (lopsided_score) {
 #if DISASTER_PENDING      // Correct -- Starts at beginning of line
-    DropEverything();
+    dropEverything();
 # if NOTIFY               // OK but not required -- Spaces after #
-    NotifyClient();
+    notifyClient();
 # endif
 #endif
-    BackToNormal();
+    backToNormal();
   }
 </pre>
 
         <pre class="badcode">// Bad - indented directives
   if (lopsided_score) {
     #if DISASTER_PENDING  // Wrong!  The "#if" should be at beginning of line
-    DropEverything();
+    dropEverything();
     #endif                // Wrong!  Do not indent "#endif"
-    BackToNormal();
+    backToNormal();
   }
 </pre>
 
@@ -1620,7 +1619,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
       <div class="stylebody">
 
         <p>The basic format for a class definition (lacking the comments, see
-          <a href="https://google.github.io/styleguide/cppguide.html#Class_Comments">Class Comments
+          <a href="#Class_Comments">Class Comments
           </a> for a discussion of what comments are needed) is:</p>
 
         <pre>class MyClass : public OtherClass {
@@ -1667,7 +1666,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
             <code>private</code> section.</li>
 
           <li>See
-            <a href="https://google.github.io/styleguide/cppguide.html#Declaration_Order">Declaration Order
+            <a href="#Declaration_Order">Declaration Order
             </a> for rules on ordering declarations within each of these sections.</li>
         </ul>
 
@@ -1718,7 +1717,7 @@ MyClass::MyClass(int var)
       <div class="stylebody">
 
         <p>
-          <a href="https://google.github.io/styleguide/cppguide.html#Namespaces">Namespaces</a> do not add an extra level of indentation. For example, use:</p>
+          <a href="#Namespaces">Namespaces</a> do not add an extra level of indentation. For example, use:</p>
 
         <pre>namespace {
 
@@ -1935,7 +1934,7 @@ i = f();      // Bad -- initialization separate from declaration.
         <pre class="badcode">// Inefficient implementation:
 for (int i = 0; i &lt; 1000000; ++i) {
   Foo f;  // My ctor and dtor get called 1000000 times each.
-  f.DoSomething(i);
+  f.doSomething(i);
 }
 </pre>
 
@@ -1943,7 +1942,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
         <pre>Foo f;  // My ctor and dtor get called once each.
 for (int i = 0; i &lt; 1000000; ++i) {
-  f.DoSomething(i);
+  f.doSomething(i);
 }
 </pre>
 
@@ -1992,7 +1991,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
         <p>Do not put large method definitions inline in the class definition. Usually, only trivial or
           performance-critical, and very short, methods may be defined inline. See
-          <a href="https://google.github.io/styleguide/cppguide.html#Inline_Functions">Inline Functions
+          <a href="#Inline_Functions">Inline Functions
           </a> for more details.</p>
 
       </div>
@@ -2066,7 +2065,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
       <div class="stylebody">
         <div class="pros">
           <p>Trailing return types are the only way to explicitly specify the return type of a
-            <a href="https://google.github.io/styleguide/cppguide.html#Lambda_expressions">lambda expression</a>. In some cases the compiler is able to deduce a lambda's return type,
+            <a href="#Lambda_expressions">lambda expression</a>. In some cases the compiler is able to deduce a lambda's return type,
             but not in all cases. Even when the compiler can deduce it automatically, sometimes specifying
             it explicitly would be clearer for readers.
           </p>
@@ -2087,11 +2086,9 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
         <div class="decision">
           <p>In most cases, continue to use the older style of function declaration where the return type
-            goes before the function name. Use the new trailing-return-type form only in cases where
+            goes before the function name. Use the new trailing-return-type form in cases where
             it's required (such as lambdas) or where, by putting the type after the function's parameter
-            list, it allows you to write the type in a much more readable way. The latter case should
-            be rare; it's mostly an issue in fairly complicated template code, which is
-            <a href="https://google.github.io/styleguide/cppguide.html#Template_metaprogramming">discouraged in most cases</a>.</p>
+            list, it allows you to write the type in a more readable way.
 
         </div>
       </div>
@@ -2149,7 +2146,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
             <li>Use
               <code>const_cast</code> to remove the
               <code>const</code> qualifier (see
-              <a href="https://google.github.io/styleguide/cppguide.html#Use_of_const">const</a>).</li>
+              <a href="#Use_of_const">const</a>).</li>
 
             <li>Use
               <code>reinterpret_cast</code> to do unsafe conversions of pointer types to and from integer and other pointer types.
@@ -2160,7 +2157,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
           </ul>
 
           <p>See the
-            <a href="https://google.github.io/styleguide/cppguide.html#Run-Time_Type_Information__RTTI_">
+            <a href="#Run-Time_Type_Information__RTTI_">
               RTTI section</a> for guidance on the use of
             <code>dynamic_cast</code>.</p>
         </div>
