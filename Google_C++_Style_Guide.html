@@ -1385,27 +1385,26 @@ if (iter != v.end()) {
         some of the rules may take some getting used to, but it is important that all project contributors
         follow the style rules so that they can all read and understand everyone's code easily.</p>
 
-
-
-      <p>To help you format code correctly, we've created a
-        <a href="https://raw.githubusercontent.com/google/styleguide/gh-pages/google-c-style.el">
-          settings file for emacs</a>.</p>
-
       <h3 id="Line_Length" style="left: -46px; position: relative;">Line Length</h3>
 
       <div class="summary">
-        <p>Each line of text in your code should be at most 80 characters long.</p>
+        <p>Each line of text in your code should be at most 100 characters long.</p>
       </div>
 
       <div class="stylebody">
 
-
-
-        <p>We recognize that this rule is controversial, but so much existing code already adheres to it,
-          and we feel that consistency is important.</p>
+        <p>This rule is controversial, but we are innovative so we will not stick to the old 80-character
+          limit.</p>
 
         <div class="pros">
-          <p>Those who favor this rule argue that it is rude to force them to resize their windows and there
+          <p>Proponents argue that a wider line can make code more readable. The 80-column limit
+            is an hidebound throwback to 1960s mainframes; modern equipment has wide screens that can
+            easily show longer lines.</p>
+          <p>More focus on descriptive names also makes lines longer than they were in the past.</p>
+        </div>
+
+        <div class="cons">
+          <p>Those in  favor of 80 characters argue that it is rude to force them to resize their windows and there
             is no need for anything longer. Some folks are used to having several code windows side-by-side,
             and thus don't have room to widen their windows in any case. People set up their work environment
             assuming a particular maximum window width, and 80 columns has been the traditional standard.
@@ -1413,24 +1412,18 @@ if (iter != v.end()) {
           </p>
         </div>
 
-        <div class="cons">
-          <p>Proponents of change argue that a wider line can make code more readable. The 80-column limit
-            is an hidebound throwback to 1960s mainframes; modern equipment has wide screens that can
-            easily show longer lines.</p>
-        </div>
-
         <div class="decision">
-          <p> 80 characters is the maximum.</p>
+          <p> 100 characters is the maximum.</p>
 
-          <p class="exception">Comment lines can be longer than 80 characters if it is not feasible to split them without
+          <p class="exception">Comment lines can be longer than 100 characters if it is not feasible to split them without
             harming readability, ease of cut and paste or auto-linking -- e.g. if a line contains an
-            example command or a literal URL longer than 80 characters.</p>
+            example command or a literal URL longer than 100 characters.</p>
 
-          <p class="exception">A raw-string literal may have content that exceeds 80 characters. Except for test code, such
+          <p class="exception">A raw-string literal may have content that exceeds 100 characters. Except for test code, such
             literals should appear near the top of a file.</p>
 
           <p class="exception">An
-            <code>#include</code> statement with a long path may exceed 80 columns.</p>
+            <code>#include</code> statement with a long path may exceed 100 columns.</p>
 
           <p class="exception">You needn't be concerned about
             <a href="https://google.github.io/styleguide/cppguide.html#The__define_Guard">header guards</a> that exceed the maximum length. </p>
@@ -1456,36 +1449,38 @@ if (iter != v.end()) {
       <div class="summary">
         <p>Return type on the same line as function name, parameters on the same line if they fit. Wrap
           parameter lists which do not fit on a single line as you would wrap arguments in a
-          <a href="https://google.github.io/styleguide/cppguide.html#Function_Calls">function call</a>.</p>
+          <a href="#Function_Calls">function call</a>.</p>
       </div>
 
       <div class="stylebody">
 
         <p>Functions look like this:</p>
 
-
-        <pre>ReturnType ClassName::FunctionName(Type par_name1, Type par_name2) {
-  DoSomething();
+        <pre>ReturnType ClassName::functionName(Type par_name1, Type par_name2)
+{
+  doSomething();
   ...
 }
 </pre>
 
         <p>If you have too much text to fit on one line:</p>
 
-        <pre>ReturnType ClassName::ReallyLongFunctionName(Type par_name1, Type par_name2,
-                                             Type par_name3) {
-  DoSomething();
+        <pre>ReturnType ClassName::reallyLongFunctionName(Type par_name1, Type par_name2,
+                                             Type par_name3)
+{
+  doSomething();
   ...
 }
 </pre>
 
         <p>or if you cannot fit even the first parameter:</p>
 
-        <pre>ReturnType LongClassName::ReallyReallyReallyLongFunctionName(
+        <pre>ReturnType LongClassName::reallyReallyReallyLongFunctionName(
     Type par_name1,  // 4 space indent
     Type par_name2,
-    Type par_name3) {
-  DoSomething();  // 2 space indent
+    Type par_name3)
+{
+  doSomething();  // 2 space indent
   ...
 }
 </pre>
@@ -1507,13 +1502,10 @@ if (iter != v.end()) {
 
           <li>There is never a space between the parentheses and the parameters.</li>
 
-          <li>The open curly brace is always on the end of the last line of the function declaration, not
-            the start of the next line.</li>
+          <li>The open curly brace is always on a separate line after the function declaration and before
+            the body.</li>
 
-          <li>The close curly brace is either on the last line by itself or on the same line as the open
-            curly brace.</li>
-
-          <li>There should be a space between the close parenthesis and the open curly brace.</li>
+          <li>The close curly brace is on the last line by itself.</li>
 
           <li>All parameters should be aligned if possible.</li>
 
@@ -1538,25 +1530,21 @@ if (iter != v.end()) {
 
         <pre>class Shape {
  public:
-  virtual void Rotate(double radians) = 0;
+  virtual void rotate(double radians) = 0;
 };
 
 class Circle : public Shape {
  public:
-  void Rotate(double radians) override;
+  void rotate(double radians) override;
 };
 
-void Circle::Rotate(double /*radians*/) {}
+void Circle::rotate(double /*radians*/)
+{}
 </pre>
 
         <pre class="badcode">// Bad - if someone wants to implement later, it's not clear what the
 // variable means.
 void Circle::Rotate(double) {}
-</pre>
-
-        <p>Attributes, and macros that expand to attributes, appear at the very beginning of the function
-          declaration or definition, before the return type:</p>
-        <pre>MUST_USE_RESULT bool IsOK();
 </pre>
 
       </div>
@@ -1613,7 +1601,7 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i
   ...
   ...
   if (...) {
-    bool result = DoSomething(
+    bool result = doSomething(
         argument1, argument2,  // 4 space indent
         argument3, argument4);
     ...
@@ -1634,7 +1622,7 @@ bool result = DoSomething(my_heuristic, x, y, z);
 </pre>
 
         <p>Or put the confusing argument on its own line with an explanatory comment:</p>
-        <pre>bool result = DoSomething(scores[x] * y + bases[x],  // Score heuristic.
+        <pre>bool result = doSomething(scores[x] * y + bases[x],  // Score heuristic.
                           x, y, z);
 </pre>
 
@@ -1645,7 +1633,7 @@ bool result = DoSomething(my_heuristic, x, y, z);
         <p>Sometimes arguments form a structure that is important for readability. In those cases, feel
           free to format the arguments according to that structure:</p>
         <pre>// Transform the widget by a 3x3 matrix.
-my_widget.Transform(x1, x2, x3,
+my_widget.transform(x1, x2, x3,
                     y1, y2, y3,
                     z1, z2, z3);
 </pre>
@@ -1672,7 +1660,7 @@ functioncall({foo, bar});
 std::pair&lt;int, int&gt; p{foo, bar};
 
 // When you have to wrap.
-SomeFunction(
+someFunction(
     {"assume a zero-length name before {"},
     some_other_function_parameter);
 SomeType variable{
@@ -1698,20 +1686,11 @@ MyType m = {  // Here, you could also break before {.
       <h3 id="Conditionals" style="left: -46px; position: relative;">Conditionals</h3>
 
       <div class="summary">
-        <p>Prefer no spaces inside parentheses. The
-          <code>if</code> and
+        <p>Do not add spaces between the parentheses and the condition. The <code>if</code> and
           <code>else</code> keywords belong on separate lines.</p>
       </div>
 
       <div class="stylebody">
-
-        <p>There are two acceptable formats for a basic conditional statement. One includes spaces between
-          the parentheses and the condition, and one does not.</p>
-
-        <p>The most common form is without spaces. Either is fine, but
-          <em>be consistent</em>. If you are modifying a file, use the format that is already present. If
-          you are writing new code, use the format that the other files in that directory or project
-          use. If in doubt and you have no personal preference, do not add the spaces.</p>
 
         <pre>if (condition) {  // no spaces inside parentheses
   ...  // 2 space indent.
@@ -1722,13 +1701,11 @@ MyType m = {  // Here, you could also break before {.
 }
 </pre>
 
-        <p>If you prefer you may add spaces inside the parentheses:
+        <p>Do not add spaces inside the parentheses:
         </p>
 
-        <pre>if ( condition ) {  // spaces inside parentheses - rare
+        <pre class="badcode">if ( condition ) {  // Bad - spaces inside parentheses
   ...  // 2 space indent.
-} else {  // The else goes on the same line as the closing brace.
-  ...
 }
 </pre>
 
@@ -1756,21 +1733,20 @@ if (x == kBar) return new Bar();
           <code>else</code>:</p>
 
         <pre class="badcode">// Not allowed - IF statement on one line when there is an ELSE clause
-if (x) DoThis();
-else DoThat();
+if (x) doThis();
+else doThat();
 </pre>
 
         <p>In general, curly braces are not required for single-line statements, but they are allowed if
           you like them; conditional or loop statements with complex conditions or statements may be
-          more readable with curly braces. Some projects require that an
-          <code>if</code> must always always have an accompanying brace.
+          more readable with curly braces.
         </p>
 
         <pre>if (condition)
-  DoSomething();  // 2 space indent.
+  doSomething();  // 2 space indent.
 
 if (condition) {
-  DoSomething();  // 2 space indent.
+  doSomething();  // 2 space indent.
 }
 </pre>
 
@@ -1799,6 +1775,12 @@ if (condition) {
 } else {
   bar;
 }
+
+//Also allowed:
+if (condition)
+  foo;
+else
+  bar;
 </pre>
 
       </div>
@@ -1842,10 +1824,6 @@ if (condition) {
 </pre>
         </div>
 
-
-
-
-
         <p> Braces are optional for single-statement loops.</p>
 
         <pre>for (int i = 0; i &lt; kSomeNumber; ++i)
@@ -1855,7 +1833,6 @@ for (int i = 0; i &lt; kSomeNumber; ++i) {
   printf("I take it back\n");
 }
 </pre>
-
 
         <p>Empty loop bodies should use an empty pair of braces or
           <code>continue</code>, but not a single semicolon.</p>
@@ -1898,15 +1875,9 @@ x = r-&gt;y;
             <code>&amp;</code>.</li>
         </ul>
 
-        <p>When declaring a pointer variable or argument, you may place the asterisk adjacent to either
-          the type or to the variable name:</p>
+        <p>When declaring a pointer variable or argument, place the asterisk adjacent to the type:</p>
 
-        <pre>// These are fine, space preceding.
-char *c;
-const string &amp;str;
-
-// These are fine, space following.
-char* c;
+        <pre>char* c;
 const string&amp; str;
 </pre> It is allowed (if unusual) to declare multiple variables in the same declaration, but it is
         disallowed if any of those have pointer or reference decorations. Such declarations are easily
@@ -1918,9 +1889,6 @@ int x, y;
 char * c;  // Bad - spaces on both sides of *
 const string &amp; str;  // Bad - spaces on both sides of &amp;
 </pre>
-
-        <p>You should do this consistently within a single file, so, when modifying an existing file, use
-          the style in that file.</p>
 
       </div>
 
@@ -1943,7 +1911,7 @@ const string &amp; str;  // Bad - spaces on both sides of &amp;
 </pre>
 
         <p>Note that when the code wraps in this example, both of the
-          <code>&amp;&amp;</code> logical AND operators are at the end of the line. This is more common in Google code, though
+          <code>&amp;&amp;</code> logical AND operators are at the end of the line. This is preferred, though
           wrapping all operators at the beginning of the line is also allowed. Feel free to insert extra
           parentheses judiciously because they can be very helpful in increasing readability when used
           appropriately. Also note that you should always use the punctuation operators, such as
@@ -2082,15 +2050,15 @@ int pi{3.14};  // Compile error: narrowing conversion.
   explicit MyClass(int var);
   ~MyClass() {}
 
-  void SomeFunction();
-  void SomeFunctionThatDoesNothing() {
-  }
+  void someFunction();
+  void someFunctionThatDoesNothing()
+  {}
 
   void set_some_var(int var) { some_var_ = var; }
-  int some_var() const { return some_var_; }
+  int get_some_var() const { return some_var_; }
 
  private:
-  bool SomeInternalFunction();
+  bool someInternalFunction();
 
   int some_var_;
   int some_other_var_;
@@ -2100,7 +2068,7 @@ int pi{3.14};  // Compile error: narrowing conversion.
         <p>Things to note:</p>
 
         <ul>
-          <li>Any base class name should be on the same line as the subclass name, subject to the 80-column
+          <li>Any base class name should be on the same line as the subclass name, subject to the 100-column
             limit.</li>
 
           <li>The
@@ -2137,29 +2105,27 @@ int pi{3.14};  // Compile error: narrowing conversion.
         <p>The acceptable formats for initializer lists are:</p>
 
         <pre>// When everything fits on one line:
-MyClass::MyClass(int var) : some_var_(var) {
-  DoSomething();
+MyClass::MyClass(int var) : some_var_(var)
+{
+  doSomething();
 }
 
 // If the signature and initializer list are not all on one line,
 // you must wrap before the colon and indent 4 spaces:
 MyClass::MyClass(int var)
-    : some_var_(var), some_other_var_(var + 1) {
-  DoSomething();
+    : some_var_(var), some_other_var_(var + 1)
+{
+  doSomething();
 }
 
 // When the list spans multiple lines, put each member on its own line
 // and align them:
 MyClass::MyClass(int var)
-    : some_var_(var),             // 4 space indent
-      some_other_var_(var + 1) {  // lined up
-  DoSomething();
+    : some_var_(var),           // 4 space indent
+      some_other_var_(var + 1)  // lined up
+{
+  doSomething();
 }
-
-// As with any other code block, the close curly can be on the same
-// line as the open curly, if it fits.
-MyClass::MyClass(int var)
-    : some_var_(var) {}
 </pre>
 
       </div>
@@ -2238,9 +2204,10 @@ void MyClass::Foo() {
 
         <h4 class="stylepoint_subsection">General</h4>
 
-        <pre>void f(bool b) {  // Open braces should always have a space before them.
+        <pre>void f(bool b)
+{
   ...
-int i = 0;  // Semicolons usually have no space before them.
+int i = 0;  // Semicolons have no space before them.
 // Spaces inside braces for braced-init-list are optional.  If you use them,
 // put them on both sides!
 int x[] = { 0 };
@@ -2251,8 +2218,9 @@ class Foo : public Bar {
  public:
   // For inline function implementations, put spaces between the braces
   // and the implementation itself.
-  Foo(int b) : Bar(), baz_(b) {}  // No spaces inside empty braces.
-  void Reset() { baz_ = 0; }  // Spaces separating braces from implementation.
+  Foo(int b) : Bar(), baz_(b)
+  {}  // No spaces inside empty braces.
+  void reset() { baz_ = 0; }  // Spaces separating braces from implementation.
   ...
 </pre>
 
@@ -2267,13 +2235,10 @@ class Foo : public Bar {
 } else {          // Spaces around else.
 }
 while (test) {}   // There is usually no space inside parentheses.
+
 switch (i) {
 for (int i = 0; i &lt; 5; ++i) {
-// Loops and conditions may have spaces inside parentheses, but this
-// is rare.  Be consistent.
-switch ( i ) {
-if ( test ) {
-for ( int i = 0; i &lt; 5; ++i ) {
+
 // For loops always have a space after the semicolon.  They may have a space
 // before the semicolon, but this is rare.
 for ( ; i &lt; 5 ; ++i) {
@@ -2352,19 +2317,7 @@ std::vector&lt;char *&gt; x;
 
       <h2 id="Exceptions_to_the_Rules" style="left: -46px; position: relative;">Exceptions to the Rules</h2>
 
-      <p>The coding conventions described above are mandatory. However, like all good rules, these sometimes
-        have exceptions, which we discuss here.</p>
-
-
-
-
-
-
-
-
-
-
-
+      <p>None yet.</p>
 
 
       <h2 class="ignoreLink">Parting Words</h2>
@@ -2372,18 +2325,14 @@ std::vector&lt;char *&gt; x;
       <p>Use common sense and
         <em>BE CONSISTENT</em>.</p>
 
-      <p>If you are editing code, take a few minutes to look at the code around you and determine its style.
-        If they use spaces around their
-        <code>if</code> clauses, you should, too. If their comments have little boxes of stars around them, make your
-        comments have little boxes of stars around them too.</p>
+      <p>If you are editing code, take a few minutes to look at the code around you and determine its
+        style.</p>
 
       <p>The point of having style guidelines is to have a common vocabulary of coding so people can concentrate
         on what you are saying, rather than on how you are saying it. We present global style rules here
         so people know the vocabulary. But local style is also important. If code you add to a file looks
         drastically different from the existing code around it, the discontinuity throws readers out
         of their rhythm when they go to read it. Try to avoid this.</p>
-
-
 
       <p>OK, enough writing about writing code; the code itself is much more interesting. Have fun!</p>
 
