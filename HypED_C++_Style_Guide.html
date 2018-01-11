@@ -75,9 +75,9 @@
       <h2 id="Header_Files" style="left: -46px; position: relative;">Header Files</h2>
 
       <p>In general, every
-        <code>.cc</code> file should have an associated
-        <code>.h</code> file. There are some common exceptions, such as unittests and small
-        <code>.cc</code> files containing just a
+        <code>.cpp</code> file should have an associated
+        <code>.hpp</code> file. There are some common exceptions, such as unittests and small
+        <code>.cpp</code> files containing just a
         <code>main()</code> function.</p>
 
       <p>Correct use of header files can make a huge difference to the readability, size and performance
@@ -88,7 +88,7 @@
 
       <div class="summary">
         <p>Header files should be self-contained (compile on their own) and end in
-          <code>.h</code>. Non-header (<code>.cpp</code>) files  must not be included
+          <code>.hpp</code>. Non-header (<code>.cpp</code>) files  must not be included
           from  other files.
       </div>
 
@@ -99,9 +99,9 @@
 
         <p>Place the definitions for template and inline functions in the same file as their declarations.
           The definitions of these constructs must be included into every
-          <code>.cc</code> file that uses them, or the program may fail to link in some build configurations.
+          <code>.cpp</code> file that uses them, or the program may fail to link in some build configurations.
           Do not move these definitions to separately included header files (
-          <code>-inl.h</code>); this practice was common in the past, but is no longer allowed.</p>
+          <code>-inl.hpp</code>).</p>
 
       </div>
 
@@ -117,7 +117,7 @@
 
         <p>To guarantee uniqueness, they should be based on the full path in a project's source tree. For
           example, the file
-          <code>foo/src/bar/baz.h</code> in project
+          <code>foo/src/bar/baz.hpp</code> in project
           <code>foo</code> should have the following guard:
         </p>
 
@@ -135,9 +135,7 @@
 
       <div class="summary">
         <p>Use standard order for readability and to avoid hidden dependencies: Related header, C library,
-          C++ library, other libraries'
-          <code>.h</code>, your project's
-          <code>.h</code>.</p>
+          C++ library, other libraries' headers, your project's headers.</p>
       </div>
 
       <div class="stylebody">
@@ -147,68 +145,68 @@
           <code>.</code> (the current directory) or
           <code>..</code> (the parent directory). For example,
 
-          <code>project/src/base/logging.h</code> should be included as:</p>
+          <code>project/src/base/logging.hpp</code> should be included as:</p>
 
-        <pre>#include "base/logging.h"
+        <pre>#include "base/logging.hpp"
 </pre>
 
         <p>In
-          <code><var>dir/foo</var>.cc</code> or
-          <code><var>dir/foo_test</var>.cc</code>, whose main purpose is to implement or test the stuff in
-          <code><var>dir2/foo2</var>.h</code>, order your includes as follows:</p>
+          <code><var>dir/foo</var>.cpp</code> or
+          <code><var>dir/foo_test</var>.cpp</code>, whose main purpose is to implement or test the stuff in
+          <code><var>dir2/foo2</var>.hpp</code>, order your includes as follows:</p>
 
         <ol>
           <li>
-            <code><var>dir2/foo2</var>.h</code>.</li>
+            <code><var>dir2/foo2</var>.hpp</code>.</li>
 
           <li>C system files.</li>
 
           <li>C++ system files.</li>
 
           <li>Other libraries'
-            <code>.h</code> files.
+            <code>.h</code>/<code>.hpp</code> files.
           </li>
 
           <li>
             Your project's
-            <code>.h</code> files.
+            <code>.hpp</code> files.
           </li>
         </ol>
 
         <p>With the preferred ordering, if
-          <code><var>dir2/foo2</var>.h</code> omits any necessary includes, the build of
-          <code><var>dir/foo</var>.cc</code> or
-          <code><var>dir/foo</var>_test.cc</code> will break. Thus, this rule ensures that build breaks show up first for the people working
+          <code><var>dir2/foo2</var>.hpp</code> omits any necessary includes, the build of
+          <code><var>dir/foo</var>.cpp</code> or
+          <code><var>dir/foo</var>_test.cpp</code> will break. Thus, this rule ensures that build breaks show up first for the people working
           on these files, not for innocent people in other packages.</p>
 
         <p>
-          <code><var>dir/foo</var>.cc</code> and
-          <code><var>dir2/foo2</var>.h</code> are usually in the same directory (e.g.
-          <code>base/basictypes_test.cc</code> and
-          <code>base/basictypes.h</code>), but may sometimes be in different directories too.</p>
+          <code><var>dir/foo</var>.cpp</code> and
+          <code><var>dir2/foo2</var>.hpp</code> are usually in the same directory (e.g.
+          <code>base/basictypes_test.cpp</code> and
+          <code>base/basictypes.hpp</code>), but may sometimes be in different directories too.</p>
 
 
 
         <p>Within each section the includes should be ordered alphabetically.</p>
 
         <p>You should include all the headers that define the symbols you rely upon. If you rely on symbols from
-          <code>bar.h</code>, don't count on the fact that you included
-          <code>foo.h</code> which (currently) includes
-          <code>bar.h</code>: include
-          <code>bar.h</code> yourself, unless
-          <code>foo.h</code> explicitly demonstrates its intent to provide you the symbols of
-          <code>bar.h</code>. However, any includes present in the related header do not need to be included again in the
+          <code>bar.hpp</code>, don't count on the fact that you included
+          <code>foo.hpp</code> which (currently) includes
+          <code>bar.hpp</code>: include
+          <code>bar.hpp</code> yourself, unless
+          <code>foo.hpp</code> explicitly demonstrates its intent to provide you the symbols of
+          <code>bar.hpp</code>. However, any includes present in the related header do not need to be included again in the
           related
-          <code>.cc</code> (i.e.,
-          <code>foo.cc</code> can rely on
-          <code>foo.h</code>'s includes).</p>
+          <code>.cpp</code> (i.e.,
+          <code>foo.cpp</code> can rely on
+          <code>foo.hpp</code>'s includes).</p>
 
         <p>For example, the includes in
 
-          <code>project/src/foo/internal/fooserver.cc</code> might look like this:</p>
+          <code>project/src/foo/internal/fooserver.cpp</code> might look like this:</p>
 
 
-        <pre>#include "foo/server/fooserver.h"
+        <pre>#include "foo/server/fooserver.hpp"
 
 #include &lt;sys/types.h&gt;
 #include &lt;unistd.h&gt;
@@ -216,9 +214,9 @@
 #include &lt;hash_map&gt;
 #include &lt;vector&gt;
 
-#include "base/basictypes.h"
-#include "base/commandlineflags.h"
-#include "foo/server/bar.h"
+#include "base/basictypes.hpp"
+#include "base/commandlineflags.hpp"
+#include "foo/server/bar.hpp"
 </pre>
 
       </div>
@@ -284,19 +282,15 @@ int cstmr_id;              // Deletes internal letters.
 
 
         <p>C++ files should end in
-          <code>.cc</code> and header files should end in
-          <code>.h</code>.
+          <code>.cpp</code> and header files should end in
+          <code>.hpp</code>.
 
         <p>In general, make your filenames very specific. For example, use
-          <code>http_server_logs.h</code> rather than
-          <code>logs.h</code>. A very common case is to have a pair of files called, e.g.,
-          <code>foo_bar.h</code> and
-          <code>foo_bar.cc</code>, defining a class called
+          <code>http_server_logs.hpp</code> rather than
+          <code>logs.hpp</code>. A very common case is to have a pair of files called, e.g.,
+          <code>foo_bar.hpp</code> and
+          <code>foo_bar.cpp</code>, defining a class called
           <code>FooBar</code>.</p>
-
-        <p>Inline functions must be in a
-          <code>.h</code> file. If your inline functions are very short, they should go directly into your
-          <code>.h</code> file. </p>
 
       </div>
 
@@ -594,14 +588,14 @@ openFileOrDie()
         <h4 class="stylepoint_subsection">File Contents</h4>
 
         <p>If a
-          <code>.h</code> declares multiple abstractions, the file-level comment should broadly describe the contents
+          <code>.hpp</code> declares multiple abstractions, the file-level comment should broadly describe the contents
           of the file, and how the abstractions are related. A 1 or 2 sentence file-level comment may
           be sufficient. The detailed documentation about individual abstractions belongs with those
           abstractions, not at the file level.</p>
 
         <p>Do not duplicate comments in both the
-          <code>.h</code> and the
-          <code>.cc</code>. Duplicated comments diverge.</p>
+          <code>.hpp</code> and the
+          <code>.cpp</code>. Duplicated comments diverge.</p>
 
       </div>
 
@@ -633,8 +627,8 @@ class GargantuanTableIterator {
           and focused usage of the class.</p>
 
         <p>When sufficiently separated (e.g.
-          <code>.h</code> and
-          <code>.cc</code> files), comments describing the use of the class should go together with its interface definition;
+          <code>.hpp</code> and
+          <code>.cpp</code> files), comments describing the use of the class should go together with its interface definition;
           comments about the class operation and implementation should accompany the implementation of
           the class's methods.</p>
 
@@ -707,7 +701,7 @@ bool isTableFull();
 
         <p>Note you should
           <em>not</em> just repeat the comments given with the function declaration, in the
-          <code>.h</code> file or wherever. It's okay to recapitulate briefly what the function does, but the focus
+          <code>.hpp</code> file or wherever. It's okay to recapitulate briefly what the function does, but the focus
           of the comments should be on how it does it.</p>
 
       </div>
@@ -1747,7 +1741,7 @@ namespace bar {
 </pre>
 <p>Terminate namespaces with comments.</p>
     <pre>
-// In the .h file
+// In the .hpp file
 namespace mynamespace {
 
 class MyClass {
@@ -1759,7 +1753,7 @@ void Foo();
 }  // namespace mynamespace
 </pre>
 
-    <pre>// In the .cc file
+    <pre>// In the .cpp file
 namespace mynamespace {
 
 void MyClass::Foo() {
