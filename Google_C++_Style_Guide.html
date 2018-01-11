@@ -223,427 +223,6 @@
 
       </div>
 
-      <h2 id="Scoping" style="left: -46px; position: relative;">Scoping</h2>
-      
-      <h3 id="Local_Variables" style="left: -46px; position: relative;">Local Variables
-      </h3>
-
-      <div class="summary">
-        <p>Place a function's variables in the narrowest scope possible, and initialize variables in the
-          declaration.</p>
-      </div>
-
-      <div class="stylebody">
-
-        <p>C++ allows you to declare variables anywhere in a function. We encourage you to declare them
-          in as local a scope as possible, and as close to the first use as possible. This makes it easier
-          for the reader to find the declaration and see what type the variable is and what it was initialized
-          to. In particular, initialization should be used instead of declaration and assignment, e.g.:</p>
-
-        <pre class="badcode">int i;
-i = f();      // Bad -- initialization separate from declaration.
-</pre>
-
-        <pre>int j = g();  // Good -- declaration has initialization.
-</pre>
-
-
-        <p>Variables needed for
-          <code>if</code>,
-          <code>while</code> and
-          <code>for</code> statements should normally be declared within those statements, so that such variables are
-          confined to those scopes. E.g.:</p>
-
-        <pre>while (const char* p = strchr(str, '/')) str = p + 1;
-</pre>
-
-        <p>There is one caveat: if the variable is an object, its constructor is invoked every time it enters
-          scope and is created, and its destructor is invoked every time it goes out of scope.</p>
-
-        <pre class="badcode">// Inefficient implementation:
-for (int i = 0; i &lt; 1000000; ++i) {
-  Foo f;  // My ctor and dtor get called 1000000 times each.
-  f.DoSomething(i);
-}
-</pre>
-
-        <p>It may be more efficient to declare such a variable used in a loop outside that loop:</p>
-
-        <pre>Foo f;  // My ctor and dtor get called once each.
-for (int i = 0; i &lt; 1000000; ++i) {
-  f.DoSomething(i);
-}
-</pre>
-
-      </div>
-
-
-      <h2 id="Classes" style="left: -46px; position: relative;">Classes</h2>
-
-      <p>Classes are the fundamental unit of code in C++. Naturally, we use them extensively. This section
-        lists the main dos and don'ts you should follow when writing a class.</p>
-
-      <h3 id="Inheritance" style="left: -46px; position: relative;">Inheritance</h3>
-
-      <div class="stylebody">
-
-        <p>Explicitly annotate overrides of virtual functions or virtual destructors
-          with an <code>override</code> or (less frequently) <code>final</code>
-          specifier. Older (pre-C++11) code will use the <code>virtual</code>
-          keyword as an inferior alternative annotation. For clarity, use exactly
-          one of <code>override</code>, <code>final</code>, or <code>virtual</code>
-          when declaring an override. Rationale: A function or destructor marked
-          <code>override</code> or <code>final</code> that is not an override
-          of a base class virtual function will not compile, and this helps catch
-          common errors. The specifiers serve as documentation; if no specifier
-          is present, the reader has to check all ancestors of the class in question
-          to determine if the function or destructor is virtual or not.</p>
-
-      </div>
-
-      <h3 id="Declaration_Order" style="left: -46px; position: relative;">Declaration Order</h3>
-
-      <div class="summary">
-        <p>Group similar declarations together, placing public parts earlier.
-        </p>
-      </div>
-
-      <div class="stylebody">
-
-        <p>A class definition should usually start with a
-          <code>public:</code> section, followed by
-          <code>protected:</code>, then
-          <code>private:</code>. Omit sections that would be empty.</p>
-
-        <p>Within each section, generally prefer grouping similar kinds of declarations together, and generally
-          prefer the following order: types (including
-          <code>typedef</code>,
-          <code>using</code>, and nested structs and classes), constants, factory functions, constructors, assignment operators,
-          destructor, all other methods, data members.</p>
-
-        <p>Do not put large method definitions inline in the class definition. Usually, only trivial or
-          performance-critical, and very short, methods may be defined inline. See
-          <a href="https://google.github.io/styleguide/cppguide.html#Inline_Functions">Inline Functions
-          </a> for more details.</p>
-
-      </div>
-
-      <h2 id="Functions" style="left: -46px; position: relative;">Functions</h2>
-
-      <h3 id="Function_Parameter_Ordering" style="left: -46px; position: relative;">Parameter Ordering</h3>
-
-      <div class="summary">
-        <p>When defining a function, parameter order is: inputs, then outputs.
-        </p>
-      </div>
-
-      <div class="stylebody">
-        <p>Parameters to C/C++ functions are either input to the function, output from the function, or
-          both. Input parameters are usually values or
-          <code>const</code> references, while output and input/output parameters will be pointers to non-
-          <code>const</code>. When ordering function parameters, put all input-only parameters before any output parameters.
-          In particular, do not add new parameters to the end of the function just because they are new;
-          place new input-only parameters before the output parameters.</p>
-
-        <p>This is not a hard-and-fast rule. Parameters that are both input and output (often classes/structs)
-          muddy the waters, and, as always, consistency with related functions may require you to bend
-          the rule.</p>
-
-      </div>
-
-      <h3 id="Write_Short_Functions" style="left: -46px; position: relative;">Write Short Functions</h3>
-
-      <div class="summary">
-        <p>Prefer small and focused functions.</p>
-      </div>
-
-      <div class="stylebody">
-        <p>Long functions are sometimes appropriate, so no hard limit is placed on functions
-          length. If a function exceeds about 40 lines, think about whether it can be broken up without
-          harming the structure of the program.</p>
-
-        <p>Even if your long function works perfectly now, someone modifying it in a few months may add
-          new behavior. This could result in bugs that are hard to find. Keeping your functions short
-          and simple makes it easier for other people to read and modify your code.</p>
-
-        <p>You could find long and complicated functions when working with some code. Do not be intimidated
-          by modifying existing code: if working with such a function proves to be difficult, you find
-          that errors are hard to debug, or you want to use a piece of it in several different contexts,
-          consider breaking up the function into smaller and more manageable pieces.</p>
-
-      </div>
-
-
-      <h3 id="trailing_return" style="left: -46px; position: relative;">Trailing Return Type Syntax</h3>
-      <div class="summary">
-        <p>Use trailing return types only where using the ordinary syntax (leading return types) is impractical
-          or much less readable.</p>
-      </div>
-
-      <div class="definition">
-        <p>C++ allows two different forms of function declarations. In the older form, the return type appears
-          before the function name. For example:</p>
-        <pre>int foo(int x);
-</pre>
-        <p>The new form, introduced in C++11, uses the
-          <code>auto</code> keyword before the function name and a trailing return type after the argument list. For example,
-          the declaration above could equivalently be written:</p>
-        <pre>auto foo(int x) -&gt; int;
-</pre>
-        <p>The trailing return type is in the function's scope. This doesn't make a difference for a simple
-          case like
-          <code>int</code> but it matters for more complicated cases, like types declared in class scope or types written
-          in terms of the function parameters.</p>
-      </div>
-
-      <div class="stylebody">
-        <div class="pros">
-          <p>Trailing return types are the only way to explicitly specify the return type of a
-            <a href="https://google.github.io/styleguide/cppguide.html#Lambda_expressions">lambda expression</a>. In some cases the compiler is able to deduce a lambda's return type,
-            but not in all cases. Even when the compiler can deduce it automatically, sometimes specifying
-            it explicitly would be clearer for readers.
-          </p>
-          <p>Sometimes it's easier and more readable to specify a return type after the function's parameter
-            list has already appeared. This is particularly true when the return type depends on template
-            parameters. For example:</p>
-          <pre>template &lt;class T, class U&gt; auto add(T t, U u) -&gt; decltype(t + u);</pre> versus
-          <pre>template &lt;class T, class U&gt; decltype(declval&lt;T&amp;&gt;() + declval&lt;U&amp;&gt;()) add(T t, U u);</pre>
-        </div>
-
-        <div class="cons">
-          <p>Trailing return type syntax is relatively new and it has no analogue in C++-like languages
-            like C and Java, so some readers may find it unfamiliar.</p>
-          <p>Existing code bases have an enormous number of function declarations that aren't going to get
-            changed to use the new syntax, so the realistic choices are using the old syntax only or
-            using a mixture of the two. Using a single version is better for uniformity of style.</p>
-        </div>
-
-        <div class="decision">
-          <p>In most cases, continue to use the older style of function declaration where the return type
-            goes before the function name. Use the new trailing-return-type form only in cases where
-            it's required (such as lambdas) or where, by putting the type after the function's parameter
-            list, it allows you to write the type in a much more readable way. The latter case should
-            be rare; it's mostly an issue in fairly complicated template code, which is
-            <a href="https://google.github.io/styleguide/cppguide.html#Template_metaprogramming">discouraged in most cases</a>.</p>
-
-        </div>
-      </div>
-
-
-      <h2 id="Other_C++_Features" style="left: -46px; position: relative;">Other C++ Features</h2>
-
-      <h3 id="Casting" style="left: -46px; position: relative;">Casting</h3>
-
-      <div class="summary">
-        <p>Use C++-style casts like
-          <code>static_cast&lt;float&gt;(double_value)</code>, or brace initialization for conversion of arithmetic types like
-          <code>int64 y = int64{1} &lt;&lt; 42</code>. Do not use cast formats like
-          <code>int y = (int)x</code> or
-          <code>int y = int(x)</code> (but the latter is okay when invoking a constructor of a class type).</p>
-      </div>
-
-      <div class="stylebody">
-
-        <div class="definition">
-          <p> C++ introduced a different cast system from C that distinguishes the types of cast operations.</p>
-        </div>
-
-        <div class="pros">
-          <p>The problem with C casts is the ambiguity of the operation; sometimes you are doing a
-            <em>conversion</em>
-            (e.g.,
-            <code>(int)3.5</code>) and sometimes you are doing a
-            <em>cast</em> (e.g.,
-            <code>(int)"hello"</code>). Brace initialization and C++ casts can often help avoid this ambiguity. Additionally,
-            C++ casts are more visible when searching for them.
-          </p>
-        </div>
-
-        <div class="cons">
-          <p>The C++-style cast syntax is verbose and cumbersome.</p>
-        </div>
-
-        <div class="decision">
-          <p>Do not use C-style casts. Instead, use these C++-style casts when explicit type conversion
-            is necessary. </p>
-
-          <ul>
-            <li>Use brace initialization to convert arithmetic types (e.g.
-              <code>int64{x}</code>). This is the safest approach because code will not compile if conversion can result in
-              information loss. The syntax is also concise.</li>
-
-
-
-            <li>Use
-              <code>static_cast</code> as the equivalent of a C-style cast that does value conversion, when you need to explicitly
-              up-cast a pointer from a class to its superclass, or when you need to explicitly cast a
-              pointer from a superclass to a subclass. In this last case, you must be sure your object
-              is actually an instance of the subclass.</li>
-
-
-
-            <li>Use
-              <code>const_cast</code> to remove the
-              <code>const</code> qualifier (see
-              <a href="https://google.github.io/styleguide/cppguide.html#Use_of_const">const</a>).</li>
-
-            <li>Use
-              <code>reinterpret_cast</code> to do unsafe conversions of pointer types to and from integer and other pointer types.
-              Use this only if you know what you are doing and you understand the aliasing issues.
-            </li>
-
-
-          </ul>
-
-          <p>See the
-            <a href="https://google.github.io/styleguide/cppguide.html#Run-Time_Type_Information__RTTI_">
-              RTTI section</a> for guidance on the use of
-            <code>dynamic_cast</code>.</p>
-        </div>
-
-      </div>
-
-      <h3 id="Preincrement_and_Predecrement" style="left: -46px; position: relative;">Preincrement and Predecrement</h3>
-
-      <div class="summary">
-        <p>Use prefix form (
-          <code>++i</code>) of the increment and decrement operators with iterators and other template objects.
-        </p>
-      </div>
-
-      <div class="stylebody">
-
-        <div class="definition">
-          <p> When a variable is incremented (
-            <code>++i</code> or
-            <code>i++</code>) or decremented (
-            <code>--i</code> or
-            <code>i--</code>) and the value of the expression is not used, one must decide whether to preincrement (decrement)
-            or postincrement (decrement).
-          </p>
-        </div>
-
-        <div class="pros">
-          <p>When the return value is ignored, the "pre" form (
-            <code>++i</code>) is never less efficient than the "post" form (
-            <code>i++</code>), and is often more efficient. This is because post-increment (or decrement) requires a
-            copy of
-            <code>i</code> to be made, which is the value of the expression. If
-            <code>i</code> is an iterator or other non-scalar type, copying
-            <code>i</code> could be expensive. Since the two types of increment behave the same when the value is ignored,
-            why not just always pre-increment?</p>
-        </div>
-
-        <div class="cons">
-          <p>The tradition developed, in C, of using post-increment when the expression value is not used,
-            especially in
-            <code>for</code> loops. Some find post-increment easier to read, since the "subject" (
-            <code>i</code>) precedes the "verb" (
-            <code>++</code>), just like in English.</p>
-        </div>
-
-        <div class="decision">
-          <p> For simple scalar (non-object) values there is no reason to prefer one form and we allow either.
-            For iterators and other template types, use pre-increment.</p>
-        </div>
-
-      </div>
-
-      <h3 id="Integer_Types" style="left: -46px; position: relative;">Integer Types</h3>
-
-      <div class="summary">
-        <p>Of the built-in C++ integer types, the only one used is
-          <code>int</code>. If a program needs a variable of a different size, use a precise-width integer type from
-          <code>&lt;stdint.h&gt;</code>, such as
-          <code>int16_t</code>. If your variable represents a value that could ever be greater than or equal to 2^31 (2GiB),
-          use a 64-bit type such as
-          <code>int64_t</code>. Keep in mind that even if your value won't ever be too large for an
-          <code>int</code>, it may be used in intermediate calculations which may require a larger type. When in doubt,
-          choose a larger type.</p>
-      </div>
-
-      <div class="stylebody">
-
-        <div class="definition">
-          <p> C++ does not specify the sizes of its integer types. Typically people assume that
-            <code>short</code> is 16 bits,
-            <code>int</code> is 32 bits,
-            <code>long</code> is 32 bits and
-            <code>long long</code> is 64 bits.</p>
-        </div>
-
-        <div class="pros">
-          <p>Uniformity of declaration.</p>
-        </div>
-
-        <div class="cons">
-          <p>The sizes of integral types in C++ can vary based on compiler and architecture.</p>
-        </div>
-
-        <div class="decision">
-
-          <p>
-            <code>&lt;stdint.h&gt;</code> defines types like
-            <code>int16_t</code>,
-            <code>uint32_t</code>,
-            <code>int64_t</code>, etc. You should always use those in preference to
-            <code>short</code>,
-            <code>unsigned
-long long</code> and the like, when you need a guarantee on the size of an integer. Of the C integer types,
-            only
-            <code>int</code> should be used. When appropriate, you are welcome to use standard types like
-            <code>size_t</code> and
-            <code>ptrdiff_t</code>.</p>
-
-          <p>We use
-            <code>int</code> very often, for integers we know are not going to be too big, e.g., loop counters. Use plain
-            old
-            <code>int</code> for such things. You should assume that an
-            <code>int</code> is at least 32 bits, but don't assume that it has more than 32 bits. If you need a 64-bit
-            integer type, use
-            <code>int64_t</code> or
-            <code>uint64_t</code>.</p>
-
-          <p>For integers we know can be "big", use
-            <code>int64_t</code>.
-          </p>
-
-          <p>You should not use the unsigned integer types such as
-            <code>uint32_t</code>, unless there is a valid reason such as representing a bit pattern rather than a number,
-            or you need defined overflow modulo 2^N. In particular, do not use unsigned types to say
-            a number will never be negative. Instead, use assertions for this.</p>
-
-
-
-          <p>If your code is a container that returns a size, be sure to use a type that will accommodate
-            any possible usage of your container. When in doubt, use a larger type rather than a smaller
-            type.</p>
-
-          <p>Use care when converting integer types. Integer conversions and promotions can cause non-intuitive
-            behavior. </p>
-        </div>
-
-        <div class="stylepoint_subsection">
-
-          <h4>On Unsigned Integers</h4>
-
-          <p>Some people, including some textbook authors, recommend using unsigned types to represent numbers
-            that are never negative. This is intended as a form of self-documentation. However, in C,
-            the advantages of such documentation are outweighed by the real bugs it can introduce. Consider:</p>
-
-          <pre>for (unsigned int i = foo.Length()-1; i &gt;= 0; --i) ...
-</pre>
-
-          <p>This code will never terminate! Sometimes gcc will notice this bug and warn you, but often
-            it will not. Equally bad bugs can occur when comparing signed and unsigned variables. Basically,
-            C's type-promotion scheme causes unsigned types to behave differently than one might expect.</p>
-
-          <p>So, document that a variable is non-negative using assertions. Don't use an unsigned type.
-          </p>
-        </div>
-
-      </div>
-
       <h2 id="Naming" style="left: -46px; position: relative;">Naming</h2>
 
       <p>The most important consistency rules are those that govern naming. The style of a name immediately
@@ -2312,6 +1891,401 @@ std::vector&lt;char *&gt; x;
 
           <li>Blank lines inside a chain of if-else blocks may well help readability.</li>
         </ul>
+
+      </div>
+
+
+      <h2 id="Other" style="left: -46px; position: relative;">Other</h2>
+      
+      <h3 id="Local_Variables" style="left: -46px; position: relative;">Local Variables
+      </h3>
+
+      <div class="summary">
+        <p>Place a function's variables in the narrowest scope possible, and initialize variables in the
+          declaration.</p>
+      </div>
+
+      <div class="stylebody">
+
+        <p>C++ allows you to declare variables anywhere in a function. We encourage you to declare them
+          in as local a scope as possible, and as close to the first use as possible. This makes it easier
+          for the reader to find the declaration and see what type the variable is and what it was initialized
+          to. In particular, initialization should be used instead of declaration and assignment, e.g.:</p>
+
+        <pre class="badcode">int i;
+i = f();      // Bad -- initialization separate from declaration.
+</pre>
+
+        <pre>int j = g();  // Good -- declaration has initialization.
+</pre>
+
+
+        <p>Variables needed for
+          <code>if</code>,
+          <code>while</code> and
+          <code>for</code> statements should normally be declared within those statements, so that such variables are
+          confined to those scopes. E.g.:</p>
+
+        <pre>while (const char* p = strchr(str, '/')) str = p + 1;
+</pre>
+
+        <p>There is one caveat: if the variable is an object, its constructor is invoked every time it enters
+          scope and is created, and its destructor is invoked every time it goes out of scope.</p>
+
+        <pre class="badcode">// Inefficient implementation:
+for (int i = 0; i &lt; 1000000; ++i) {
+  Foo f;  // My ctor and dtor get called 1000000 times each.
+  f.DoSomething(i);
+}
+</pre>
+
+        <p>It may be more efficient to declare such a variable used in a loop outside that loop:</p>
+
+        <pre>Foo f;  // My ctor and dtor get called once each.
+for (int i = 0; i &lt; 1000000; ++i) {
+  f.DoSomething(i);
+}
+</pre>
+
+      </div>
+
+      <p>Classes are the fundamental unit of code in C++. Naturally, we use them extensively. This section
+        lists the main dos and don'ts you should follow when writing a class.</p>
+
+      <h3 id="Inheritance" style="left: -46px; position: relative;">Inheritance</h3>
+
+      <div class="stylebody">
+
+        <p>Explicitly annotate overrides of virtual functions or virtual destructors
+          with an <code>override</code> or (less frequently) <code>final</code>
+          specifier. Older (pre-C++11) code will use the <code>virtual</code>
+          keyword as an inferior alternative annotation. For clarity, use exactly
+          one of <code>override</code>, <code>final</code>, or <code>virtual</code>
+          when declaring an override. Rationale: A function or destructor marked
+          <code>override</code> or <code>final</code> that is not an override
+          of a base class virtual function will not compile, and this helps catch
+          common errors. The specifiers serve as documentation; if no specifier
+          is present, the reader has to check all ancestors of the class in question
+          to determine if the function or destructor is virtual or not.</p>
+
+      </div>
+
+      <h3 id="Declaration_Order" style="left: -46px; position: relative;">Declaration Order in Classes</h3>
+
+      <div class="summary">
+        <p>Group similar declarations together, placing public parts earlier.
+        </p>
+      </div>
+
+      <div class="stylebody">
+
+        <p>A class definition should usually start with a
+          <code>public:</code> section, followed by
+          <code>protected:</code>, then
+          <code>private:</code>. Omit sections that would be empty.</p>
+
+        <p>Within each section, generally prefer grouping similar kinds of declarations together, and generally
+          prefer the following order: types (including
+          <code>typedef</code>,
+          <code>using</code>, and nested structs and classes), constants, factory functions, constructors, assignment operators,
+          destructor, all other methods, data members.</p>
+
+        <p>Do not put large method definitions inline in the class definition. Usually, only trivial or
+          performance-critical, and very short, methods may be defined inline. See
+          <a href="https://google.github.io/styleguide/cppguide.html#Inline_Functions">Inline Functions
+          </a> for more details.</p>
+
+      </div>
+
+      <h3 id="Function_Parameter_Ordering" style="left: -46px; position: relative;">Function Parameter Ordering</h3>
+
+      <div class="summary">
+        <p>When defining a function, parameter order is: inputs, then outputs.
+        </p>
+      </div>
+
+      <div class="stylebody">
+        <p>Parameters to C/C++ functions are either input to the function, output from the function, or
+          both. Input parameters are usually values or
+          <code>const</code> references, while output and input/output parameters will be pointers to non-
+          <code>const</code>. When ordering function parameters, put all input-only parameters before any output parameters.
+          In particular, do not add new parameters to the end of the function just because they are new;
+          place new input-only parameters before the output parameters.</p>
+
+        <p>This is not a hard-and-fast rule. Parameters that are both input and output (often classes/structs)
+          muddy the waters, and, as always, consistency with related functions may require you to bend
+          the rule.</p>
+
+      </div>
+
+      <h3 id="Write_Short_Functions" style="left: -46px; position: relative;">Write Short Functions</h3>
+
+      <div class="summary">
+        <p>Prefer small and focused functions.</p>
+      </div>
+
+      <div class="stylebody">
+        <p>Long functions are sometimes appropriate, so no hard limit is placed on functions
+          length. If a function exceeds about 40 lines, think about whether it can be broken up without
+          harming the structure of the program.</p>
+
+        <p>Even if your long function works perfectly now, someone modifying it in a few months may add
+          new behavior. This could result in bugs that are hard to find. Keeping your functions short
+          and simple makes it easier for other people to read and modify your code.</p>
+
+        <p>You could find long and complicated functions when working with some code. Do not be intimidated
+          by modifying existing code: if working with such a function proves to be difficult, you find
+          that errors are hard to debug, or you want to use a piece of it in several different contexts,
+          consider breaking up the function into smaller and more manageable pieces.</p>
+
+      </div>
+
+
+      <h3 id="trailing_return" style="left: -46px; position: relative;">Trailing Return Type Syntax</h3>
+      <div class="summary">
+        <p>Use trailing return types only where using the ordinary syntax (leading return types) is impractical
+          or much less readable.</p>
+      </div>
+
+      <div class="definition">
+        <p>C++ allows two different forms of function declarations. In the older form, the return type appears
+          before the function name. For example:</p>
+        <pre>int foo(int x);
+</pre>
+        <p>The new form, introduced in C++11, uses the
+          <code>auto</code> keyword before the function name and a trailing return type after the argument list. For example,
+          the declaration above could equivalently be written:</p>
+        <pre>auto foo(int x) -&gt; int;
+</pre>
+        <p>The trailing return type is in the function's scope. This doesn't make a difference for a simple
+          case like
+          <code>int</code> but it matters for more complicated cases, like types declared in class scope or types written
+          in terms of the function parameters.</p>
+      </div>
+
+      <div class="stylebody">
+        <div class="pros">
+          <p>Trailing return types are the only way to explicitly specify the return type of a
+            <a href="https://google.github.io/styleguide/cppguide.html#Lambda_expressions">lambda expression</a>. In some cases the compiler is able to deduce a lambda's return type,
+            but not in all cases. Even when the compiler can deduce it automatically, sometimes specifying
+            it explicitly would be clearer for readers.
+          </p>
+          <p>Sometimes it's easier and more readable to specify a return type after the function's parameter
+            list has already appeared. This is particularly true when the return type depends on template
+            parameters. For example:</p>
+          <pre>template &lt;class T, class U&gt; auto add(T t, U u) -&gt; decltype(t + u);</pre> versus
+          <pre>template &lt;class T, class U&gt; decltype(declval&lt;T&amp;&gt;() + declval&lt;U&amp;&gt;()) add(T t, U u);</pre>
+        </div>
+
+        <div class="cons">
+          <p>Trailing return type syntax is relatively new and it has no analogue in C++-like languages
+            like C and Java, so some readers may find it unfamiliar.</p>
+          <p>Existing code bases have an enormous number of function declarations that aren't going to get
+            changed to use the new syntax, so the realistic choices are using the old syntax only or
+            using a mixture of the two. Using a single version is better for uniformity of style.</p>
+        </div>
+
+        <div class="decision">
+          <p>In most cases, continue to use the older style of function declaration where the return type
+            goes before the function name. Use the new trailing-return-type form only in cases where
+            it's required (such as lambdas) or where, by putting the type after the function's parameter
+            list, it allows you to write the type in a much more readable way. The latter case should
+            be rare; it's mostly an issue in fairly complicated template code, which is
+            <a href="https://google.github.io/styleguide/cppguide.html#Template_metaprogramming">discouraged in most cases</a>.</p>
+
+        </div>
+      </div>
+
+      <h3 id="Casting" style="left: -46px; position: relative;">Casting</h3>
+
+      <div class="summary">
+        <p>Use C++-style casts like
+          <code>static_cast&lt;float&gt;(double_value)</code>, or brace initialization for conversion of arithmetic types like
+          <code>int64 y = int64{1} &lt;&lt; 42</code>. Do not use cast formats like
+          <code>int y = (int)x</code> or
+          <code>int y = int(x)</code> (but the latter is okay when invoking a constructor of a class type).</p>
+      </div>
+
+      <div class="stylebody">
+
+        <div class="definition">
+          <p> C++ introduced a different cast system from C that distinguishes the types of cast operations.</p>
+        </div>
+
+        <div class="pros">
+          <p>The problem with C casts is the ambiguity of the operation; sometimes you are doing a
+            <em>conversion</em>
+            (e.g.,
+            <code>(int)3.5</code>) and sometimes you are doing a
+            <em>cast</em> (e.g.,
+            <code>(int)"hello"</code>). Brace initialization and C++ casts can often help avoid this ambiguity. Additionally,
+            C++ casts are more visible when searching for them.
+          </p>
+        </div>
+
+        <div class="cons">
+          <p>The C++-style cast syntax is verbose and cumbersome.</p>
+        </div>
+
+        <div class="decision">
+          <p>Do not use C-style casts. Instead, use these C++-style casts when explicit type conversion
+            is necessary. </p>
+
+          <ul>
+            <li>Use brace initialization to convert arithmetic types (e.g.
+              <code>int64{x}</code>). This is the safest approach because code will not compile if conversion can result in
+              information loss. The syntax is also concise.</li>
+
+
+
+            <li>Use
+              <code>static_cast</code> as the equivalent of a C-style cast that does value conversion, when you need to explicitly
+              up-cast a pointer from a class to its superclass, or when you need to explicitly cast a
+              pointer from a superclass to a subclass. In this last case, you must be sure your object
+              is actually an instance of the subclass.</li>
+
+
+
+            <li>Use
+              <code>const_cast</code> to remove the
+              <code>const</code> qualifier (see
+              <a href="https://google.github.io/styleguide/cppguide.html#Use_of_const">const</a>).</li>
+
+            <li>Use
+              <code>reinterpret_cast</code> to do unsafe conversions of pointer types to and from integer and other pointer types.
+              Use this only if you know what you are doing and you understand the aliasing issues.
+            </li>
+
+
+          </ul>
+
+          <p>See the
+            <a href="https://google.github.io/styleguide/cppguide.html#Run-Time_Type_Information__RTTI_">
+              RTTI section</a> for guidance on the use of
+            <code>dynamic_cast</code>.</p>
+        </div>
+
+      </div>
+
+      <h3 id="Preincrement_and_Predecrement" style="left: -46px; position: relative;">Preincrement and Predecrement</h3>
+
+      <div class="summary">
+        <p>Use prefix form (
+          <code>++i</code>) of the increment and decrement operators with iterators and other template objects.
+        </p>
+      </div>
+
+      <div class="stylebody">
+
+        <div class="definition">
+          <p> When a variable is incremented (
+            <code>++i</code> or
+            <code>i++</code>) or decremented (
+            <code>--i</code> or
+            <code>i--</code>) and the value of the expression is not used, one must decide whether to preincrement (decrement)
+            or postincrement (decrement).
+          </p>
+        </div>
+
+        <div class="pros">
+          <p>When the return value is ignored, the "pre" form (
+            <code>++i</code>) is never less efficient than the "post" form (
+            <code>i++</code>), and is often more efficient. This is because post-increment (or decrement) requires a
+            copy of
+            <code>i</code> to be made, which is the value of the expression. If
+            <code>i</code> is an iterator or other non-scalar type, copying
+            <code>i</code> could be expensive. Since the two types of increment behave the same when the value is ignored,
+            why not just always pre-increment?</p>
+        </div>
+
+        <div class="cons">
+          <p>The tradition developed, in C, of using post-increment when the expression value is not used,
+            especially in
+            <code>for</code> loops. Some find post-increment easier to read, since the "subject" (
+            <code>i</code>) precedes the "verb" (
+            <code>++</code>), just like in English.</p>
+        </div>
+
+        <div class="decision">
+          <p> For simple scalar (non-object) values there is no reason to prefer one form and we allow either.
+            For iterators and other template types, use pre-increment.</p>
+        </div>
+
+      </div>
+
+      <h3 id="Integer_Types" style="left: -46px; position: relative;">Integer Types</h3>
+
+      <div class="summary">
+        <p>Of the built-in C++ integer types, the only one used is
+          <code>int</code>. If a program needs a variable of a different size, use a precise-width integer type from
+          <code>&lt;stdint.h&gt;</code>, such as
+          <code>int16_t</code>. If your variable represents a value that could ever be greater than or equal to 2^31 (2GiB),
+          use a 64-bit type such as
+          <code>int64_t</code>. Keep in mind that even if your value won't ever be too large for an
+          <code>int</code>, it may be used in intermediate calculations which may require a larger type. When in doubt,
+          choose a larger type.</p>
+      </div>
+
+      <div class="stylebody">
+
+        <div class="definition">
+          <p> C++ does not specify the sizes of its integer types. Typically people assume that
+            <code>short</code> is 16 bits,
+            <code>int</code> is 32 bits,
+            <code>long</code> is 32 bits and
+            <code>long long</code> is 64 bits.</p>
+        </div>
+
+        <div class="pros">
+          <p>Uniformity of declaration.</p>
+        </div>
+
+        <div class="cons">
+          <p>The sizes of integral types in C++ can vary based on compiler and architecture.</p>
+        </div>
+
+        <div class="decision">
+
+          <p>
+            <code>&lt;stdint.h&gt;</code> defines types like
+            <code>int16_t</code>,
+            <code>uint32_t</code>,
+            <code>int64_t</code>, etc. You should always use those in preference to
+            <code>short</code>,
+            <code>unsigned
+long long</code> and the like, when you need a guarantee on the size of an integer. Of the C integer types,
+            only
+            <code>int</code> should be used. When appropriate, you are welcome to use standard types like
+            <code>size_t</code> and
+            <code>ptrdiff_t</code>.</p>
+
+          <p>We use
+            <code>int</code> very often, for integers we know are not going to be too big, e.g., loop counters. Use plain
+            old
+            <code>int</code> for such things. You should assume that an
+            <code>int</code> is at least 32 bits, but don't assume that it has more than 32 bits. If you need a 64-bit
+            integer type, use
+            <code>int64_t</code> or
+            <code>uint64_t</code>.</p>
+
+          <p>For integers we know can be "big", use
+            <code>int64_t</code>.
+          </p>
+
+          <p>You should not use the unsigned integer types such as
+            <code>uint32_t</code>, unless there is a valid reason such as representing a bit pattern rather than a number,
+            or you need defined overflow modulo 2^N. In particular, do not use unsigned types to say
+            a number will never be negative. Instead, use assertions for this.</p>
+
+
+
+          <p>If your code is a container that returns a size, be sure to use a type that will accommodate
+            any possible usage of your container. When in doubt, use a larger type rather than a smaller
+            type.</p>
+
+          <p>Use care when converting integer types. Integer conversions and promotions can cause non-intuitive
+            behavior. </p>
+        </div>
 
       </div>
 
