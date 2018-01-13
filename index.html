@@ -975,7 +975,7 @@ if (iter != v.end()) {
 
       <div class="stylebody">
 
-        <p>We use spaces for indentation. Do not use tabs in your code. You should set your editor to emit
+        <p>Do not use tabs in your code. You should set your editor to emit
           spaces when you hit the tab key.</p>
 
       </div>
@@ -1026,8 +1026,6 @@ if (iter != v.end()) {
         <ul>
           <li>Choose good parameter names.</li>
 
-          <li>Parameter names may be omitted only if the parameter is unused and its purpose is obvious.</li>
-
           <li>If you cannot fit the return type and the function name on a single line, break between them.</li>
 
           <li>If you break after the return type of a function declaration or definition, do not indent.</li>
@@ -1049,39 +1047,6 @@ if (iter != v.end()) {
 
           <li>Wrapped parameters have a 4 space indent.</li>
         </ul>
-
-        <p>Unused parameters that are obvious from context may be omitted:</p>
-
-        <pre>class Foo {
- public:
-  Foo(Foo&amp;&amp;);
-  Foo(const Foo&amp;);
-  Foo&amp; operator=(Foo&amp;&amp;);
-  Foo&amp; operator=(const Foo&amp;);
-};
-</pre>
-
-        <p>Unused parameters that might not be obvious should comment out the variable name in the function
-          definition:</p>
-
-        <pre>class Shape {
- public:
-  virtual void rotate(double radians) = 0;
-};
-
-class Circle : public Shape {
- public:
-  void rotate(double radians) override;
-};
-
-void Circle::rotate(double /*radians*/)
-{}
-</pre>
-
-        <pre class="badcode">// Bad - if someone wants to implement later, it's not clear what the
-// variable means.
-void Circle::rotate(double) {}
-</pre>
 
       </div>
 
@@ -1180,7 +1145,7 @@ my_widget.transform(x1, x2, x3,
 
       <div class="summary">
         <p>Format a
-          <a href="#Braced_Initializer_List">braced initializer list</a>
+          <!--TODO a href="#Braced_Initializer_List"-->braced initializer list<!--/a-->
           exactly like you would format a function call in its place.</p>
       </div>
 
@@ -1499,6 +1464,7 @@ string name("Some Name");
 string name{"Some Name"};
 </pre>
 
+        <!--TODO braced init list usage-->
         <p>Be careful when using a braced initialization list
           <code>{...}</code> on a type with an
           <code>std::initializer_list</code> constructor. A nonempty
