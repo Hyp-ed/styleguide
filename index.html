@@ -1809,6 +1809,8 @@ std::vector&lt;char *&gt; x;
 
 
       <h2 id="Other" style="left: -46px; position: relative;">Other</h2>
+
+      <p>Things here are often on the borderline between <em>code style</em> and <em>coding practice</em>.</p>
       
       <h3 id="Local_Variables" style="left: -46px; position: relative;">Local Variables
       </h3>
@@ -1904,9 +1906,9 @@ for (int i = 0; i &lt; 1000000; ++i) {
           destructor, all other methods, data members.</p>
 
         <p>Do not put large method definitions inline in the class definition. Usually, only trivial or
-          performance-critical, and very short, methods may be defined inline. See
+          performance-critical, and very short, methods may be defined inline. <!--TODO See
           <a href="#Inline_Functions">Inline Functions
-          </a> for more details.</p>
+          </a> for more details.--></p>
 
       </div>
 
@@ -1979,7 +1981,7 @@ for (int i = 0; i &lt; 1000000; ++i) {
       <div class="stylebody">
         <div class="pros">
           <p>Trailing return types are the only way to explicitly specify the return type of a
-            <a href="#Lambda_expressions">lambda expression</a>. In some cases the compiler is able to deduce a lambda's return type,
+            lambda expression. In some cases the compiler is able to deduce a lambda's return type,
             but not in all cases. Even when the compiler can deduce it automatically, sometimes specifying
             it explicitly would be clearer for readers.
           </p>
@@ -2055,12 +2057,10 @@ for (int i = 0; i &lt; 1000000; ++i) {
               pointer from a superclass to a subclass. In this last case, you must be sure your object
               is actually an instance of the subclass.</li>
 
-
-
-            <li>Use
+            <!--TODO <li>Use
               <code>const_cast</code> to remove the
               <code>const</code> qualifier (see
-              <a href="#Use_of_const">const</a>).</li>
+              <a href="#Use_of_const">const</a>).</li>-->
 
             <li>Use
               <code>reinterpret_cast</code> to do unsafe conversions of pointer types to and from integer and other pointer types.
@@ -2070,10 +2070,10 @@ for (int i = 0; i &lt; 1000000; ++i) {
 
           </ul>
 
-          <p>See the
+          <!--TODO <p>See the
             <a href="#Run-Time_Type_Information__RTTI_">
               RTTI section</a> for guidance on the use of
-            <code>dynamic_cast</code>.</p>
+            <code>dynamic_cast</code>.</p> -->
         </div>
 
       </div>
@@ -2125,6 +2125,8 @@ for (int i = 0; i &lt; 1000000; ++i) {
       </div>
 
       <h3 id="Integer_Types" style="left: -46px; position: relative;">Integer Types</h3>
+
+      <!--TODO max hardware size (32/64b)-->
 
       <div class="summary">
         <p>Of the built-in C++ integer types, the only one used is
@@ -2179,23 +2181,6 @@ long long</code> and the like, when you need a guarantee on the size of an integ
             <code>int64_t</code> or
             <code>uint64_t</code>.</p>
 
-          <p>For integers we know can be "big", use
-            <code>int64_t</code>.
-          </p>
-
-          <p>You should not use the unsigned integer types such as
-            <code>uint32_t</code>, unless there is a valid reason such as representing a bit pattern rather than a number,
-            or you need defined overflow modulo 2^N. In particular, do not use unsigned types to say
-            a number will never be negative. Instead, use assertions for this.</p>
-
-
-
-          <p>If your code is a container that returns a size, be sure to use a type that will accommodate
-            any possible usage of your container. When in doubt, use a larger type rather than a smaller
-            type.</p>
-
-          <p>Use care when converting integer types. Integer conversions and promotions can cause non-intuitive
-            behavior. </p>
         </div>
 
       </div>
