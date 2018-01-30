@@ -556,8 +556,6 @@ openFileOrDie()
       <h3 id="File_Comments" style="left: -46px; position: relative;">File Comments</h3>
 
       <div class="summary">
-        <p>Start each file with license boilerplate.</p>
-
         <p>File comments describe the contents of a file. If a file declares, implements, or tests exactly
           one abstraction that is documented by a comment at the point of declaration, file comments
           are not required. All other files must have file comments.</p>
@@ -569,11 +567,31 @@ openFileOrDie()
         <h4 class="stylepoint_subsection">Legal Notice and Author Line
         </h4>
 
+        <p>Every file should start with the following license boilerplate.</p>
 
+        <pre>/*
+ * Author:
+ * Organisation: HYPED
+ * Date: 
+ * Description:
+ *
+ *    Copyright 2018 HYPED
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */</pre>
 
-        <p>Every file should contain license boilerplate.</p>
-
-        <p>If you make significant changes to a file with an author line, consider deleting the author line.</p>
+        <p>If more people contribute to the same file, include all of them on the 'Authors:' line.
+          Consider deleting the line if there is too many authors.
+        </p>
 
         <h4 class="stylepoint_subsection">File Contents</h4>
 
