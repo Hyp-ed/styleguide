@@ -1066,30 +1066,6 @@ if (iter != v.end()) {
 
       </div>
 
-      <h3 id="Formatting_Lambda_Expressions" style="left: -46px; position: relative;">Lambda Expressions</h3>
-
-      <div class="summary">
-        <p>Format parameters and bodies as for any other function, and capture lists like other comma-separated
-          lists.</p>
-      </div>
-
-      <div class="stylebody">
-        <p>For by-reference captures, do not leave a space between the ampersand (&amp;) and the variable
-          name.</p>
-        <pre>int x = 0;
-auto x_plus_n = [&amp;x](int n) -&gt; int { return x + n; }
-</pre>
-        <p>Short lambdas may be written inline as function arguments.</p>
-        <pre>std::set&lt;int&gt; blacklist = {7, 8, 9};
-std::vector&lt;int&gt; digits = {3, 9, 1, 8, 4, 7, 1};
-digits.erase(std::remove_if(digits.begin(), digits.end(), [&amp;blacklist](int i) {
-               return blacklist.find(i) != blacklist.end();
-             }),
-             digits.end());
-</pre>
-
-      </div>
-
       <h3 id="Function_Calls" style="left: -46px; position: relative;">Function Calls</h3>
 
       <div class="summary">
