@@ -290,7 +290,10 @@ int cstmr_id;              // Deletes internal letters.
           <code>foo_bar.hpp</code> and
           <code>foo_bar.cpp</code>, defining a class called
           <code>FooBar</code>.</p>
-
+          
+          <p>There is an exemption to this rule when writing tests. In this case tests should have .test.cpp as 
+             the end of the file name. For example differentiator.test.cpp. The file is still a .cpp file but the 
+             .test.cpp is more convention from Google's own style guide for the testing framework.</p>
       </div>
 
       <h3 id="Type_Names" style="left: -46px; position: relative;">Type Names</h3>
@@ -1799,6 +1802,106 @@ std::vector&lt;char *&gt; x;
 
       </div>
 
+<!-------------------------------------------------------------------------------------------------------------------
+  TESTING
+-------------------------------------------------------------------------------------------------------------------->
+<h2 id="Testing" style="left: -46px; position: relative;">Testing</h2>
+      
+<p>This section contains the style conventions <em>specifically for creating tests</em>. This covers all forms 
+   of tests in the HYPED Codebase, please read this carefully before beginning testing.</p>
+  
+  <!-- Test Names -->
+  <h3 id="Test Names" style="left: -46px; position: relative">Test names</h3>
+
+  <div class="summary">
+    <p>Test names should be written in <em><b>CamelCase with the name beginning with a verb </b></em> 
+       This closely follows the Google primer style guide for names of tests. Which is what a lot
+       of the testing style's are inspired from
+    </p>
+  </div>  
+  <div class="stylebody">
+    <pre class="badcode">// Bad- spaced using underscores, capitalisation is inconsistent
+TEST_F(DifferentiatorFunctionality, handles_zero_Input) {
+...
+}
+    </pre>
+    <pre>// Good - correct spacing convention, capitalisation is consistent
+TEST_F(DifferentiatorFunctionality, handlesZeroInput){
+...
+}
+    </pre>            
+  </div>
+
+<!-- Test Fixtures -->
+  <h3 id="Test Fixtures" style="left: -46px; position: relative">Test Fixtures</h3>
+
+  <div class="summary">
+    <p> We have two styling rules for test fixtures:
+      <ul>
+        <li>Firstly test fixtures <em><b>must be structs</b></em>. This
+            is in contrast to Google's style for testing but we feel structs are appropriate since the test 
+            fixtures won't be used outside their tests
+        </li>
+        <li>
+            Secondly test fixtures <em><b>must begin with a capital letter</b></em> and then <em><b>follow 
+            camel case styling for capitalisation</b></em></p>
+        </li>
+      </ul>              
+  </div>
+
+  <div class="stylebody">
+    <pre class="badcode">// Bad - wrong capitalisation
+struct differentiatorFunctionality : public ::testing::Test {
+...
+}
+    </pre>
+    <pre>// Good - capitalisation correct
+struct DifferentiatorFunctionality : public ::testing::Test {
+...
+}
+    </pre>
+  </div>
+  
+  <!-- Test Fixture Variables vs Local Test Variable -->
+  <h3 id="Test Fixture Variables vs Local Test Variables" style="left: -46px; position: relative">Test fixture variables vs local test variables</h3>
+  <div class="summary">
+    <p> When declaring variables in tests we need to be consistent about where we accessing them from and their scopes. <em><b>All variables which you will use
+        across multiple tests must be defined in the test fixture and must be protected. </b></em></p>
+    <p> <em><b>Any variable which is specific to the certain test you are running must only be defined locally.</b></em> Some examples are a temporary variable storing a
+        value before it was changed. </p>
+  </div>
+  <!-- Error Messages -->
+  <h3 id="Error Messages" style="left: -46px; position: relative"> Error Messages</h3>
+  <div class="summary">
+    <p> When writing error messages for your ASSERT() or EXPECT() you should do the following:</p>
+    <ul>
+        <li>Encapsulate the error messages in variables defined in the test fixture</li>
+        <li>Do not write the error message directly as a string onto the end of the ASSERT or EXPECT</li>
+    </ul>
+
+    <pre class="badcode">// Bad - message added directly, not stored in test fixture variable
+struct DifferentiatorFunctionality : ::testing::Test {
+...
+}
+
+TEST_F(DifferentiatorFunctionality, handlesZeroInput){
+ASSERT(...) << "Should handle zero input"
+}
+    </pre>
+    <pre>
+struct DifferentiatorFunctionality : ::testing::Test {
+std::string zero_input_error = "Should handle zero input";
+}
+
+TEST_F(DifferentiatorFunctionality, handlesZeroInput){
+ASSERT(...) << zero_input_error;
+}
+    </pre>
+
+    <p> These error message variables may seem pretty meaningless but they become much better when you get
+        longer error messages and helps keep the 100-character limit on lines as mentioned earlier in the
+        style guide </p>
+  </div>
 
       <h2 id="Other" style="left: -46px; position: relative;">Other</h2>
 
