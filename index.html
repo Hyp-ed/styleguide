@@ -1831,7 +1831,8 @@ std::vector&lt;char *&gt; x;
   <h3 id="Test Names" style="left: -46px; position: relative">Test names</h3>
 
   <div class="summary">
-    <p>Test names should be written in <em><b>CamelCase with the name beginning with a verb </b></em> 
+    <p>Test names should be written in <em><b>camelCase with the name beginning with a verb and first letter lowercased
+       then following CamelCase afterwards</b></em> 
        This closely follows the Google primer style guide for names of tests. Which is what a lot
        of the testing style's are inspired from
     </p>
@@ -1855,10 +1856,7 @@ TEST_F(DifferentiatorFunctionality, handlesZeroInput){
   <div class="summary">
     <p> We have two styling rules for test fixtures:
       <ul>
-        <li>Firstly test fixtures <em><b>must be structs</b></em>. This
-            is in contrast to Google's style for testing but we feel structs are appropriate since the test 
-            fixtures won't be used outside their tests
-        </li>
+        <li>Firstly test fixtures <em><b>must be structs</b></em></li>
         <li>
             Secondly test fixtures <em><b>must begin with a capital letter</b></em> and then <em><b>follow 
             camel case styling for capitalisation</b></em></p>
@@ -1881,15 +1879,19 @@ struct DifferentiatorFunctionality : public ::testing::Test {
   
   <!-- Test Fixture Variables vs Local Test Variable -->
   <h3 id="Test Fixture Variables vs Local Test Variables" style="left: -46px; position: relative">Test fixture variables vs local test variables</h3>
-  <div class="summary">
+  <div class="stylebody">
     <p> When declaring variables in tests we need to be consistent about where we accessing them from and their scopes. <em><b>All variables which you will use
         across multiple tests must be defined in the test fixture and must be protected. </b></em></p>
     <p> <em><b>Any variable which is specific to the certain test you are running must only be defined locally.</b></em> Some examples are a temporary variable storing a
         value before it was changed. </p>
+    <p> The only exception to this is when you are defining your error message variables. In this case, you should define them in the test fixture even if they are only used
+        for one test. This is purely for convenience to whoever is looking at the code.
+    </p>
   </div>
+  
   <!-- Error Messages -->
   <h3 id="Error Messages" style="left: -46px; position: relative"> Error Messages</h3>
-  <div class="summary">
+  <div class="stylebody">
     <p> When writing error messages for your ASSERT() or EXPECT() you should do the following:</p>
     <ul>
         <li>Encapsulate the error messages in variables defined in the test fixture</li>
