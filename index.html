@@ -299,9 +299,7 @@ int cstmr_id;              // Deletes internal letters.
           <code>foo_bar.cpp</code>, defining a class called
           <code>FooBar</code>.</p>
           
-          <p>There is an exemption to this rule when writing tests. In this case tests should have .test.cpp as 
-             the end of the file name. For example differentiator.test.cpp. The file is still a .cpp file but the 
-             .test.cpp is more convention from Google's own style guide for the testing framework.</p>
+          <p>This rule may not apply in testing. For more information see <a href="#Test_File_Names">Test File Names</a>.</p>
       </div>
 
       <h3 id="Type_Names" style="left: -46px; position: relative;">Type Names</h3>
@@ -1850,6 +1848,20 @@ TEST_F(DifferentiatorFunctionality, handlesZeroInput){
     </pre>            
   </div>
 
+<!-- Test File names -->
+<h3 id="Test_File_Names" style="left: -46px; position: relative">Test file names</h3>
+<div class="summary">
+  <p> There is one special rule for the naming of test files. They should all end in .test.cpp </p>
+  <p> NOTE: That is not going to change the file type from a typical .cpp file it is just a naming
+      convention commonly used for testing and allows for people to see instantly that it is a test files
+  </p>
+  <pre class="badcode">// Bad file name
+differentiator_test.cpp
+  </pre>
+  <pre>// Good file name
+differentiator.test.cpp
+  </pre>
+</div>
 <!-- Test Fixtures -->
   <h3 id="Test Fixtures" style="left: -46px; position: relative">Test Fixtures</h3>
 
