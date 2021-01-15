@@ -11,6 +11,9 @@
   <!--link rel="shortcut icon" type="image/x-icon" href="https://www.google.com/favicon.ico"-->
 </head>
 
+<!-------------------------------------------------------------------------------------------------------------------
+  General Introduction
+-------------------------------------------------------------------------------------------------------------------->
 <body onload="initStyleGuide();">
   <div id="content">
     <h1>HypED C++ Style Guide</h1>
@@ -71,7 +74,9 @@
       </div>
 
 
-
+<!-------------------------------------------------------------------------------------------------------------------
+  Header Files
+-------------------------------------------------------------------------------------------------------------------->
       <h2 id="Header_Files" style="left: -46px; position: relative;">Header Files</h2>
 
       <p>In general, every
@@ -221,6 +226,9 @@
 
       </div>
 
+<!-------------------------------------------------------------------------------------------------------------------
+  Naming
+-------------------------------------------------------------------------------------------------------------------->
       <h2 id="Naming" style="left: -46px; position: relative;">Naming</h2>
 
       <p>The style of a name immediately informs us what sort of thing the named entity is: a type,
@@ -290,7 +298,8 @@ int cstmr_id;              // Deletes internal letters.
           <code>foo_bar.hpp</code> and
           <code>foo_bar.cpp</code>, defining a class called
           <code>FooBar</code>.</p>
-
+          
+          <p>This rule may not apply in testing. For more information see <a href="#Test_File_Names">Test File Names</a>.</p>
       </div>
 
       <h3 id="Type_Names" style="left: -46px; position: relative;">Type Names</h3>
@@ -522,9 +531,15 @@ openFileOrDie()
 
       </div>
 
+<!-------------------------------------------------------------------------------------------------------------------
+  Comments
+-------------------------------------------------------------------------------------------------------------------->
       <h2 id="Comments" style="left: -46px; position: relative;">Comments</h2>
 
-      <p>Code should be documented well. This serves several purposes. Well documented code is easier for others to understand, which leads to better code maintainability. Furthermore, once a programmer needs to document code, they need to think about the code structure, design, and functionality. This thinking fosters writing better code in general. Documentation can also be used to generate html site for easy navigation through project’s APIs.</p>
+      <p>Code should be documented well. This serves several purposes. Well documented code is easier for others to understand, 
+         which leads to better code maintainability. Furthermore, once a programmer needs to document code, they need to think 
+         about the code structure, design, and functionality. This thinking fosters writing better code in general. Documentation 
+         can also be used to generate html site for easy navigation through project’s APIs.</p>
 
       <p>Though a pain to write, comments are absolutely vital to keeping our code readable. The following
         rules describe what you should comment and where. But remember: while comments are very important,
@@ -931,6 +946,9 @@ if (iter != v.end()) {
 
       </div>
 
+<!-------------------------------------------------------------------------------------------------------------------
+  Formatting
+-------------------------------------------------------------------------------------------------------------------->
       <h2 id="Formatting" style="left: -46px; position: relative;">Formatting</h2>
 
       <p>Coding style and formatting are pretty arbitrary, but a project is much easier to follow if everyone
@@ -1799,7 +1817,126 @@ std::vector&lt;char *&gt; x;
 
       </div>
 
+<!-------------------------------------------------------------------------------------------------------------------
+  TESTING
+-------------------------------------------------------------------------------------------------------------------->
+<h2 id="Testing" style="left: -46px; position: relative;">Testing</h2>
+      
+<p>This section contains the style conventions <em>specifically for creating tests</em>. This covers all forms 
+   of tests in the HYPED Codebase, please read this carefully before beginning testing.</p>
+  
+  <!-- Test Names -->
+  <h3 id="Test Names" style="left: -46px; position: relative">Test names</h3>
 
+  <div class="summary">
+    <p>Test names should be written in <em><b>camelCase with the name beginning with a verb and first letter lowercased
+       then following CamelCase afterwards</b></em> 
+       This closely follows the Google primer style guide for names of tests. Which is what a lot
+       of the testing style's are inspired from
+    </p>
+  </div>  
+  <div class="stylebody">
+    <pre class="badcode">// Bad- spaced using underscores, capitalisation is inconsistent
+TEST_F(DifferentiatorFunctionality, handles_zero_Input) {
+...
+}
+    </pre>
+    <pre>// Good - correct spacing convention, capitalisation is consistent
+TEST_F(DifferentiatorFunctionality, handlesZeroInput){
+...
+}
+    </pre>            
+  </div>
+
+<!-- Test File names -->
+<h3 id="Test_File_Names" style="left: -46px; position: relative">Test file names</h3>
+<div class="summary">
+  <p> There is one special rule for the naming of test files. They should all end in .test.cpp </p>
+  <p> NOTE: That is not going to change the file type from a typical .cpp file it is just a naming
+      convention commonly used for testing and allows for people to see instantly that it is a test files
+  </p>
+  <pre class="badcode">// Bad file name
+differentiator_test.cpp
+  </pre>
+  <pre>// Good file name
+differentiator.test.cpp
+  </pre>
+</div>
+<!-- Test Fixtures -->
+  <h3 id="Test Fixtures" style="left: -46px; position: relative">Test Fixtures</h3>
+
+  <div class="summary">
+    <p> We have two styling rules for test fixtures:
+      <ul>
+        <li>Firstly test fixtures <em><b>must be structs</b></em></li>
+        <li>
+            Secondly test fixtures <em><b>must begin with a capital letter</b></em> and then <em><b>follow 
+            camel case styling for capitalisation</b></em></p>
+        </li>
+      </ul>              
+  </div>
+
+  <div class="stylebody">
+    <pre class="badcode">// Bad - wrong capitalisation
+struct differentiatorFunctionality : public ::testing::Test {
+...
+}
+    </pre>
+    <pre>// Good - capitalisation correct
+struct DifferentiatorFunctionality : public ::testing::Test {
+...
+}
+    </pre>
+  </div>
+  
+  <!-- Test Fixture Variables vs Local Test Variable -->
+  <h3 id="Test Fixture Variables vs Local Test Variables" style="left: -46px; position: relative">Test fixture variables vs local test variables</h3>
+  <div class="stylebody">
+    <p> When declaring variables in tests we need to be consistent about where we are accessing them from and their scopes. <em><b>All variables which you will use
+        across multiple tests must be defined in the test fixture and must be protected. </b></em></p>
+    <p> <em><b>Any variable which is specific to the certain test you are running must only be defined locally.</b></em> Some examples are a temporary variable storing a
+        value before it was changed. </p>
+    <p> The only exception to this is when you are defining your error message variables. In this case, you should define them in the test fixture even if they are only used
+        for one test. This is purely for convenience to whoever is looking at the code.
+    </p>
+  </div>
+  
+  <!-- Error Messages -->
+  <h3 id="Error Messages" style="left: -46px; position: relative"> Error Messages</h3>
+  <div class="stylebody">
+    <p> When writing error messages for your ASSERT() or EXPECT() you should do the following:</p>
+    <ul>
+        <li>Encapsulate the error messages in variables defined in the test fixture</li>
+        <li>Do not write the error message directly as a string onto the end of the ASSERT or EXPECT</li>
+    </ul>
+
+    <pre class="badcode">// Bad - message added directly, not stored in test fixture variable
+struct DifferentiatorFunctionality : ::testing::Test {
+...
+}
+
+TEST_F(DifferentiatorFunctionality, handlesZeroInput){
+ASSERT(...) << "Should handle zero input"
+}
+    </pre>
+    <pre>
+struct DifferentiatorFunctionality : ::testing::Test {
+std::string zero_input_error = "Should handle zero input";
+}
+
+TEST_F(DifferentiatorFunctionality, handlesZeroInput){
+ASSERT(...) << zero_input_error;
+}
+    </pre>
+
+    <p> These error message variables may seem pretty meaningless but they become much better when you get
+        longer error messages and helps keep the 100-character limit on lines as mentioned earlier in the
+        style guide </p>
+  </div>
+
+<!-------------------------------------------------------------------------------------------------------------------
+  Other
+-------------------------------------------------------------------------------------------------------------------->
       <h2 id="Other" style="left: -46px; position: relative;">Other</h2>
 
       <p>Things here are often on the borderline between <em>code style</em> and <em>coding practice</em>.</p>
@@ -2124,6 +2261,9 @@ long long</code> and the like, when you need a guarantee on the size of an integ
 
       </div>
 
+<!-------------------------------------------------------------------------------------------------------------------
+  Exceptions to the Rules
+-------------------------------------------------------------------------------------------------------------------->
       <h2 id="Exceptions_to_the_Rules" style="left: -46px; position: relative;">Exceptions to the Rules</h2>
 
       <p>None yet.</p>
