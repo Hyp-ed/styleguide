@@ -1933,6 +1933,24 @@ ASSERT(...) << zero_input_error;
         longer error messages and helps keep the 100-character limit on lines as mentioned earlier in the
         style guide </p>
   </div>
+  <!-- Production Tests -->
+  <h3 id="Production Tests" style="left: -46px; position: relative"> Production Tests</h3>
+  <div class="stylebody">
+    <p> Production tests may be resource intensive and may take some time to run; these are categorised separately from other tests.
+        they can easily be ran by entering `make test` to run the entire test suite or if you want to run exclusively Production tests,
+        `make test-production`.
+    <br>They should be denoted by adding ‘_prod’ at the end of the test name. For example: 
+</p>
+    
+    <pre>TEST_F(PodSimulations, SomePodSimulation_prod){
+...
+}
+    </pre>
+
+    
+  </div>
+
+
 
 <!-------------------------------------------------------------------------------------------------------------------
   Other
